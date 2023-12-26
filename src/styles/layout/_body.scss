@@ -1,18 +1,17 @@
-body {
-    background-color: aqua;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 7rem;
-}
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+ }
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  
-.item {
-    background-color: azure;
-    grid-column: span 2;
+    &__elementDeleteBtn {
+        margin-left: 1rem;
+    }
+
+    &__elementDeleteBtn:hover {
+        color: gray;
+        background-color: beige;
+    }
 }
   
