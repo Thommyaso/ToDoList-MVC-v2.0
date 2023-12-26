@@ -11,15 +11,15 @@ class MainController extends AbstractController {
     }
 
     initialize() {
-        this.view.render(this.model.tasks);
+        this.view.render(this.getModel().tasks);
     }
 
     addTask(task) {
-        this.model.addTask(task);
+        this.getModel().addTask(task);
     }
 
     handleDeleteClick(index) {
-        this.model.removeTask(index);
+        this.getModel().removeTask(index);
     }
 }
 
