@@ -4,18 +4,33 @@ class MainView extends AbstractView {
     constructor(model, controller) {
         super(model, controller);
 
-        this.deleteButtons = [];
+        this.deleteBtns = [];
         this.listContainer = document.querySelector('.container__list');
         this.textareaBtn = document.querySelector('#textareaBtn');
         this.textarea = document.querySelector('#textarea');
-        console.log(controller);
+    }
+
+    removeDeleteBtns() {
+        // remove listeners before removing buttons
+        this.deleteBtns.forEach((btn, index) => {
+            btn.removeEventListener('click', () => {
+                this.controller.handleDeleteClick(index);
+            });
+        });
+        this.deleteBtns = [];
+    }
+
+    setDeleteBtns() {
+        // cleans old buttons and their event listeners to prevent memory leaks
+        this.removeDeleteBtns();
+        // sets up array of new deleteButtons to assign event listeners
+        this.deleteBtns = document.querySelectorAll('.container__elementDeleteBtn');
     }
 
     setUpDeleteListener() {
-        this.deleteButtons = document.querySelectorAll('.container__elementDeleteBtn');
-        this.deleteButtons.forEach((element, index) => {
+        this.setDeleteBtns();
+        this.deleteBtns.forEach((element, index) => {
             element.addEventListener('click', () => {
-                console.log(this.controller, index);
                 this.controller.handleDeleteClick(index);
             });
         });
@@ -39,7 +54,7 @@ class MainView extends AbstractView {
         this.setUpDeleteListener();
     }
 
-    getTask() {
+    setTextareaListener() {
         this.textareaBtn.addEventListener('click', () => {
             const newTask = this.textarea.value;
             return this.controller.addTask(newTask);

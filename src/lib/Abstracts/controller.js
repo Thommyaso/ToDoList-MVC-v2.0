@@ -8,7 +8,7 @@ class AbstractController {
     }
 
     getView() {
-        return this.View;
+        return this.view;
     }
 
     getModel() {

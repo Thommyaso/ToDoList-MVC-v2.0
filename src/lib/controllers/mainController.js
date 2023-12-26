@@ -6,8 +6,8 @@ class MainController extends AbstractController {
         super(model);
 
         this.setView(new MainView(this.model, this));
-        this.model.addObserver('change', this.view);
-        this.listen = this.view.getTask();
+        this.model.addObserver('change', this.getView());
+        this.textareaListener = this.getView().setTextareaListener();
     }
 
     initialize() {
@@ -20,7 +20,6 @@ class MainController extends AbstractController {
 
     handleDeleteClick(index) {
         this.model.removeTask(index);
-        console.log('fuck');
     }
 }
 
