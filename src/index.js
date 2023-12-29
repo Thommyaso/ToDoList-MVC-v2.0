@@ -15,12 +15,16 @@
 
 
 // --> manually create single list task <--
-/* import TaskModel from './lib/models/taskModel';
+import TaskModel from './lib/models/taskModel';
 import TaskView from './lib/views/taskView';
 import TaskController from './lib/controllers/taskController';
-const taskModel = TaskModel.fromString('task', 'go do this aaa');
+/* const taskModel = TaskModel.fromString('task', 'go do this aaa');
+const taskView = new TaskView(taskModel); */
+
+/* const taskModel = TaskModel.fromString('task', 'go do this aaa');
 const taskView = new TaskView(taskModel);
-taskView.render();
+const taskController = new TaskController(taskModel);
+taskView.initialize('', taskController);
 */
 
 
@@ -36,8 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskCollectionController = new TaskCollectionController(taskCollectionModel);
     const taskCollectionView = new TaskCollectionView(taskCollectionModel);
 
+    taskCollectionModel.addObserver('newTask', taskCollectionView);
     taskCollectionView.initialize(list, taskCollectionController);
-    taskCollectionView.render();
+
+    const taskModel = TaskModel.fromString('task', '' /* 'go do this aaa' */);
+    const taskView = new TaskView(taskModel);
+    taskModel.addObserver('addTask', taskView);
+    const taskController = new TaskController(taskModel);
+    taskView.initialize('', taskController);
+    taskView.handleTask('go do thidddddddddddds');
+    // taskCollectionModel.fireEvent('newTask');
 
 
+    taskCollectionView.handleAddedTask(taskView.render());
+    // console.log(taskCollectionModel);
+    // console.log(taskView.render());
 });

@@ -23,7 +23,6 @@ class TaskView extends AbstractView {
         deleteBtn.textContent = 'Delete';
         this._deleteBtn = deleteBtn;
         this._rootEl.appendChild(deleteBtn);
-        console.log(this._deleteBtn);
         this.setEventListener();
     }
 
@@ -36,13 +35,19 @@ class TaskView extends AbstractView {
     }
 
     clickHandler() {
-        // this.controller.handleDeleteClick();  <-- time to set up controller for task View
         console.log('clicked');
         this.removeEventListener();
     }
 
+    handleTask(task) {
+        this.controller.handleNewTask(task);
+    }
+
+    update(/* data */) {
+        this.render();
+    }
+
     render() {
-        // console.log(this.controller); < -- controller not present atm
         return this.createListElement();
     }
 }

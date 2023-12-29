@@ -7,8 +7,8 @@ class TaskCollectionModel extends AbstractModel {
         super();
 
         this.properties.tasks = [
-            TaskModel.fromString('task', 'go do this'),
-            TaskModel.fromString('task', 'go do that'),
+            /* TaskModel.fromString('task', 'go do this'),
+            TaskModel.fromString('task', 'go do that'), */
         ];
     }
 
@@ -24,9 +24,12 @@ class TaskCollectionModel extends AbstractModel {
     }
 
     addTask(task) {
+        console.log('entered');
         this.properties.tasks.push(task);
+        this.fireEvent('newTask');
+        /* this.properties.tasks.push(task);
         task.addObserver('removed', this.removeTask.bind(this, task.get('id')));
-        this.fireEvent('added', this.tasks);
+        this.fireEvent('added', this.tasks); */
     }
 
     addTaskFromString(name) {
