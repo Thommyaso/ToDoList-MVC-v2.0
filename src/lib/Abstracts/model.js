@@ -27,8 +27,9 @@ class AbstractModel extends AbstractObserver {
         }
     }
 
-    remove(key) {
+    removeKey(key) {
         delete this.properties[key];
+        this.fireEvent('removedKey');
     }
 
     cleanCollection() {

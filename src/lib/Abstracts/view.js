@@ -1,10 +1,9 @@
 class AbstractView {
-    constructor(model, controller) {
+    constructor(model) {
         if (new.target === AbstractView) {
             throw new TypeError('Cannot instantiate abstract class directly');
         }
 
-        this.controller = controller;
         this.model = model;
     }
 
@@ -32,8 +31,17 @@ class AbstractView {
         this.rootEl = newRootEll;
     }
 
+    initialize(rootEl, controller) {
+        this.rootEl = rootEl;
+        this.controller = controller;
+    }
+
     render() {
         // this method will be modified in subclasses
+    }
+
+    update(data) {
+        this.render(data);
     }
 }
 
