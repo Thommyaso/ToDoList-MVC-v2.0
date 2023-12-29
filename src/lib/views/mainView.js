@@ -1,4 +1,4 @@
-import AbstractView from '../Abstracts/view';
+/* import AbstractView from '../Abstracts/view';
 
 class MainView extends AbstractView {
     constructor(model, controller) {
@@ -67,3 +67,4 @@ class MainView extends AbstractView {
 }
 
 export default MainView;
+ */

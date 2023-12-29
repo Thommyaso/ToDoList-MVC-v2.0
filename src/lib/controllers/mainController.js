@@ -1,4 +1,4 @@
-import AbstractController from '../Abstracts/controller';
+/* import AbstractController from '../Abstracts/controller';
 import MainView from '../views/mainView';
 
 class MainController extends AbstractController {
@@ -24,3 +24,4 @@ class MainController extends AbstractController {
 }
 
 export default MainController;
+ */

@@ -5,6 +5,8 @@ class AbstractView {
         }
 
         this.model = model;
+        this._rootEl = '';
+        this.controller = '';
     }
 
     getModel() {
@@ -15,9 +17,9 @@ class AbstractView {
         return this.controller;
     }
 
-    getRootEl() {
+    /*     getRootEl() {
         return this.rootEl;
-    }
+    } */
 
     setController(newController) {
         this.controller = newController;
@@ -27,8 +29,12 @@ class AbstractView {
         this.model = newModel;
     }
 
-    setRootEl(newRootEll) {
-        this.rootEl = newRootEll;
+    get rootEl() {
+        return this._rootEl;
+    }
+
+    set rootEl(newRootEll) {
+        this._rootEl = newRootEll;
     }
 
     initialize(rootEl, controller) {
