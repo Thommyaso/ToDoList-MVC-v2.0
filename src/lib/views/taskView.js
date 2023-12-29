@@ -4,7 +4,7 @@ class TaskView extends AbstractView {
     constructor(model) {
         super(model);
         this._deleteBtn = '';
-        this.clickHandler = this.clickHandler.bind(this); // Bind the handler to the instance
+        this.deleteClickHandler = this.deleteClickHandler.bind(this); // Bind the handler to the instance
     }
 
     createListElement() {
@@ -27,20 +27,16 @@ class TaskView extends AbstractView {
     }
 
     setEventListener() {
-        this._deleteBtn.addEventListener('click', this.clickHandler);
+        this._deleteBtn.addEventListener('click', this.deleteClickHandler);
     }
 
     removeEventListener() {
-        this._deleteBtn.removeEventListener('click', this.clickHandler);
+        this._deleteBtn.removeEventListener('click', this.deleteClickHandler);
     }
 
-    clickHandler() {
+    deleteClickHandler() {
         console.log('clicked');
         this.removeEventListener();
-    }
-
-    handleTask(task) {
-        this.controller.handleNewTask(task);
     }
 
     update(/* data */) {

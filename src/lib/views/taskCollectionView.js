@@ -1,5 +1,5 @@
 import AbstractView from '../Abstracts/view';
-// import TaskView from './taskView';
+import TaskView from './taskView';
 
 class TaskCollectionView extends AbstractView {
     constructor(model) {
@@ -7,13 +7,12 @@ class TaskCollectionView extends AbstractView {
     }
 
     render() {
-
-        const tasks = this.model.properties.tasks; // this.controller.getTasks();
-        tasks.forEach((task) => {
-            // const taskView = new TaskView(task);
-            console.log(task);
-
-            this._rootEl.appendChild(task /* taskView.createElement */);
+        this._rootEl.innerHTML = '';
+        const taskModels = this.model.properties.tasks;
+        taskModels.forEach((model) => {
+            const taskView = new TaskView(model);
+            const createdTask = taskView.render();
+            this._rootEl.appendChild(createdTask);
         });
     }
 
@@ -23,7 +22,6 @@ class TaskCollectionView extends AbstractView {
     }
 
     update() {
-
         this.render();
     }
 }

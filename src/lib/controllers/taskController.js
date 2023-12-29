@@ -5,11 +5,6 @@ class TaskController extends AbstractController {
         super(model);
 
     }
-
-    handleNewTask(task) {
-        this.model.properties.task = task;
-        this.model.fireEvent('addTask', this.model.properties.task);
-    }
 }
 
 export default TaskController;

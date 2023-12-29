@@ -1,4 +1,5 @@
 import AbstractController from '../Abstracts/controller';
+import TaskModel from '../models/taskModel';
 
 class TaskCollectionController extends AbstractController {
     constructor(model) {
@@ -6,12 +7,9 @@ class TaskCollectionController extends AbstractController {
     }
 
     addedTask(task) {
-        this.model.properties.tasks.push(task);
-        // console.log(this.model);
+        const taskModel = TaskModel.fromString('task', task);
+        this.model.properties.tasks.push(taskModel);
         this.model.fireEvent('newTask');
-        // return 'fuuck';
-        // console.log(task);
-        // console.log(this.model);
     }
 
     getTasks() {
