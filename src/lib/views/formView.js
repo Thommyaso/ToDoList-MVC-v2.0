@@ -10,7 +10,6 @@ class FormView extends AbstractView {
     }
 
     extractElements() {
-        console.log(this);
         this.textarea = this._rootEl[0];
         this.submitBtn = this._rootEl[1];
     }

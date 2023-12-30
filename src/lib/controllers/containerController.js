@@ -47,7 +47,6 @@ class ContainerController extends AbstractController {
         this.model.properties.list.collectionController.addedTask('go do that');
         this.model.properties.list.collectionController.addedTask('king in the castle');
         this.model.properties.list.collectionController.addedTask('uauauiua');
-        console.log(this.model.properties);
     }
 
 }
