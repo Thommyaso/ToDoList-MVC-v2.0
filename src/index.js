@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Example tasks
-    taskCollectionView.handleAddedTask('go do this');
-    taskCollectionView.handleAddedTask('go do that');
-    taskCollectionView.handleAddedTask('king in the castle');
-    taskCollectionView.handleAddedTask('uauauiua');
+    taskCollectionController.addedTask('go do this');
+    taskCollectionController.addedTask('go do that');
+    taskCollectionController.addedTask('king in the castle');
+    taskCollectionController.addedTask('uauauiua');
 });

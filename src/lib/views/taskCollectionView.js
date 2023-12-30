@@ -17,10 +17,6 @@ class TaskCollectionView extends AbstractView {
         });
     }
 
-    handleAddedTask(task) {
-        this.controller.addedTask(task);
-    }
-
     update() {
         this.render();
     }
