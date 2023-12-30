@@ -4,10 +4,15 @@ import TaskCollectionModel from './lib/models/taskCollectionModel';
 import TaskCollectionView from './lib/views/taskCollectionView';
 import TaskCollectionController from './lib/controllers/taskCollectionController';
 
+import FormController from './lib/controllers/formController';
+import FormModel from './lib/models/formModel';
+import FormView from './lib/views/formView';
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
-
-    const list = document.querySelector('.container__list');
+    // Set up list
+    const list = document.querySelector('#list01');
     const taskCollectionModel = new TaskCollectionModel();
     const taskCollectionController = new TaskCollectionController(taskCollectionModel);
     const taskCollectionView = new TaskCollectionView(taskCollectionModel);
@@ -15,9 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     taskCollectionModel.addObserver('newTask', taskCollectionView);
     taskCollectionView.initialize(list, taskCollectionController);
 
+
+    // Set up form
+    const form = document.querySelector('#form');
+    const formModel = new FormModel();
+    const formController = new FormController(formModel);
+    const formView = new FormView(formModel, taskCollectionController);
+
+    formModel.addObserver('enteredNewTask', formView);
+    formView.initialize(form, formController);
+    formView.render();
+
+
+    // Example tasks
     taskCollectionView.handleAddedTask('go do this');
     taskCollectionView.handleAddedTask('go do that');
     taskCollectionView.handleAddedTask('king in the castle');
     taskCollectionView.handleAddedTask('uauauiua');
-    // console.log(taskCollectionModel.properties.tasks[0]);
 });

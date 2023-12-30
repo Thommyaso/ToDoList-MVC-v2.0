@@ -46,7 +46,7 @@ class TaskView extends AbstractView {
         this.setUpDeleteBtn();
         this.setEventListener();
         this._rootEl.appendChild(this._deleteBtn);
-        console.log(this);
+        // console.log(this);
         return this._rootEl;
     }
 }

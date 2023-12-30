@@ -14,18 +14,15 @@ class TaskCollectionView extends AbstractView {
             const taskView = new TaskView(model, this);
             const createdTask = taskView.render();
             this._rootEl.appendChild(createdTask);
-            // console.log(createdTask.index);
         });
     }
 
     handleAddedTask(task) {
         this.controller.addedTask(task);
-        return task;
     }
 
     handleDeleteClick(index) {
         this.controller.deleteListElement(index);
-        console.log(index, 'from main controller');
     }
 
     update() {
