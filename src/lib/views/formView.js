@@ -10,6 +10,7 @@ class FormView extends AbstractView {
     }
 
     extractElements() {
+        console.log(this);
         this.textarea = this._rootEl[0];
         this.submitBtn = this._rootEl[1];
     }
@@ -31,6 +32,7 @@ class FormView extends AbstractView {
     }
 
     update() {
+        console.log(this);
         this.taskCollectionController.addedTask(this.model.properties.text);
         this.textarea.value = '';
     }
