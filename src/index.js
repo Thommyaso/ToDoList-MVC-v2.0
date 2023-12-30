@@ -6,11 +6,11 @@ import ContainerController from './lib/controllers/containerController';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const container = 'listContainer01';
+    const toDoListContainer01 = 'listContainer01';
     const containerModel = new ContainerModel();
     const containerView = new ContainerView(containerModel);
     const containerController = new ContainerController(containerModel);
 
-    containerView.initialize(container, containerController);
+    containerView.initialize(toDoListContainer01, containerController);
     containerView.render();
 });
