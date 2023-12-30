@@ -1,29 +1,21 @@
-1. Each task is ment to be a task model.
-2. Task models need to use same view and controllers to make sure each task renders the same
-3. So there will be 1 task view and 1 task controller but each task will have its own model:
+1. TaskCollectionModel will store a collection of all TaskModels inside properties.tasks. For example:
 
-    Task Model, (go do this)
-    Task Model, (go do that)
-    Task Model, (king in the castle)
-    task Model  (uauauiua)*/
-
-4. there will be a separate view for whole list. that updates the list when new element is added or one of the elements is deleted.
-5. there will be 3 separate models (not counting ones that will be created for each specyfic task):
-
-    - 1 for the list, // it will be connected to view representing the list
-    - 1 for a task,   // it will be connected to 1 view and 1 controller that represents all tasks
-    - 1 for a textarea data
-
-6. Task Collection Model will have a property:
-
-    this.properties = {
-        tasks: [Task Model (go do this), 'Task Model (go do that),Task Model (king in the castle), Task Model (uauauiua)]
+    properties = {
+        tasks: [{TaskModel}, {TaskModel}, {TaskModel}]
     }
 
-    each time list view will be rendering list it will be calling task view to render task models
+2. Each TaskModel will contain properties.text value. For example:
 
-7. Task model will have one property to its key 'task' for example:
+    properies = {
+        task: 'go do this'
+    }
 
-        this.properties = {
-            task: 'go do this'
-        }
+3. There will be no TaskController since it would not be able to use "delete" method on it's level to remove it's TaskModel. Those directions will have to be passed to taskCollectionController.
+
+4. TaskModel will not require to have a TaskObserver set up, since it will never be modified only created or deleted.
+
+5. TaskView will be generated for each task Model upon rendering of all tasks.
+
+6. TaskView will be responsible for communicating with TaskCollectionController to remove it's model from the collection upon pressing delete button, this will also trigger removal of event listener for that button to avoid memory leaks.
+
+7. Form will have its own model, view and controller. When new task is submitted, formView will communicate with taskCollectionController to add new task, which will add new TaskModel to taskCollectionModel and trigger taskCollectionView to reload all tasks.
