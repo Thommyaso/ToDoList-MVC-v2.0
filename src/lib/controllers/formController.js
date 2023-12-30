@@ -8,7 +8,6 @@ class FormController extends AbstractController {
     handleEnteredValue(text) {
         this.model.properties.text = text;
         this.model.fireEvent('enteredNewTask');
-        // console.log(this.model);
     }
 
 }

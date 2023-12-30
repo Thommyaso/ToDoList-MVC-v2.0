@@ -17,10 +17,6 @@ class AbstractView {
         return this.controller;
     }
 
-    /*     getRootEl() {
-        return this.rootEl;
-    } */
-
     setController(newController) {
         this.controller = newController;
     }
@@ -43,11 +39,11 @@ class AbstractView {
     }
 
     render() {
-        // this method will be modified in subclasses
+        // set up in child class
     }
 
-    update(data) {
-        this.render(data);
+    update() {
+        // set up in child class
     }
 }
 

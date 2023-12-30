@@ -15,13 +15,12 @@ class AbstractObserver {
         this.events[eventName].push(callback);
     }
 
-    fireEvent(eventName/* , data */) {
+    fireEvent(eventName) {
         if (Array.isArray(this.events[eventName])) {
             const observers = [...this.events[eventName]];
 
             observers.forEach((observer) => {
-                // console.log(observer);
-                observer.update(/* data */);
+                observer.update();
             });
         }
     }

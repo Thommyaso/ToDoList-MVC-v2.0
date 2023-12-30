@@ -11,7 +11,7 @@ class TaskCollectionView extends AbstractView {
         const taskModels = this.model.properties.tasks;
         taskModels.forEach((model, index) => {
             model.properties.index = index;
-            const taskView = new TaskView(model, this);
+            const taskView = new TaskView(model, this.controller);
             const createdTask = taskView.render();
             this._rootEl.appendChild(createdTask);
         });
@@ -19,10 +19,6 @@ class TaskCollectionView extends AbstractView {
 
     handleAddedTask(task) {
         this.controller.addedTask(task);
-    }
-
-    handleDeleteClick(index) {
-        this.controller.deleteListElement(index);
     }
 
     update() {
