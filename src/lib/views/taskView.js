@@ -14,8 +14,6 @@ class TaskView extends AbstractView {
         taskElement.innerHTML =
             `${this.model.properties.task}`;
         this._rootEl = taskElement;
-        this.setUpDeleteBtn();
-        return taskElement;
     }
 
     setUpDeleteBtn() {
@@ -23,8 +21,6 @@ class TaskView extends AbstractView {
         deleteBtn.className = 'container__elementDeleteBtn';
         deleteBtn.textContent = 'Delete';
         this._deleteBtn = deleteBtn;
-        this._rootEl.appendChild(deleteBtn);
-        this.setEventListener();
     }
 
     setEventListener() {
@@ -46,9 +42,13 @@ class TaskView extends AbstractView {
     }
 
     render() {
-        return this.createListElement();
+        this.createListElement();
+        this.setUpDeleteBtn();
+        this.setEventListener();
+        this._rootEl.appendChild(this._deleteBtn);
+        console.log(this);
+        return this._rootEl;
     }
-
 }
 
 export default TaskView;
