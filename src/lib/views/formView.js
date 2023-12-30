@@ -6,7 +6,7 @@ class FormView extends AbstractView {
         this.taskCollectionController = taskCollectionController;
         this.textarea = null;
         this.submitBtn = null;
-        this.submitClickHandler = this.submitClickHandler.bind(this);
+        this._submitClickHandler = this.submitClickHandler.bind(this);
     }
 
     extractElements() {
@@ -24,7 +24,7 @@ class FormView extends AbstractView {
 
     setEventListener() {
         if (this.submitBtn) {
-            this.submitBtn.addEventListener('click', this.submitClickHandler);
+            this.submitBtn.addEventListener('click', this._submitClickHandler);
         } else {
             console.error('submit button not available');
         }
