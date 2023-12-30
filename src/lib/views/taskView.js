@@ -1,8 +1,9 @@
 import AbstractView from '../Abstracts/view';
 
 class TaskView extends AbstractView {
-    constructor(model) {
+    constructor(model, taskControllerView) {
         super(model);
+        this.taskControllerView = taskControllerView;
         this._deleteBtn = '';
         this.deleteClickHandler = this.deleteClickHandler.bind(this); // Bind the handler to the instance
     }
@@ -35,7 +36,8 @@ class TaskView extends AbstractView {
     }
 
     deleteClickHandler() {
-        console.log('clicked');
+        // to handle deleting of an object i need to pass it to the parent view object to use method 'delete'
+        this.taskControllerView.handleDeleteClick(this.model.properties.index);
         this.removeEventListener();
     }
 
@@ -46,6 +48,7 @@ class TaskView extends AbstractView {
     render() {
         return this.createListElement();
     }
+
 }
 
 export default TaskView;

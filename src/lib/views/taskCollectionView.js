@@ -9,16 +9,23 @@ class TaskCollectionView extends AbstractView {
     render() {
         this._rootEl.innerHTML = '';
         const taskModels = this.model.properties.tasks;
-        taskModels.forEach((model) => {
-            const taskView = new TaskView(model);
+        taskModels.forEach((model, index) => {
+            model.properties.index = index;
+            const taskView = new TaskView(model, this);
             const createdTask = taskView.render();
             this._rootEl.appendChild(createdTask);
+            // console.log(createdTask.index);
         });
     }
 
     handleAddedTask(task) {
         this.controller.addedTask(task);
         return task;
+    }
+
+    handleDeleteClick(index) {
+        this.controller.deleteListElement(index);
+        console.log(index, 'from main controller');
     }
 
     update() {

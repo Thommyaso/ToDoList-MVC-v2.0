@@ -15,6 +15,12 @@ class TaskCollectionController extends AbstractController {
     getTasks() {
         return this.model.properties.tasks;
     }
+
+    deleteListElement(index) {
+        delete this.model.properties.tasks[index];
+        console.log(this.model);
+        this.model.fireEvent('newTask');
+    }
 }
 
 

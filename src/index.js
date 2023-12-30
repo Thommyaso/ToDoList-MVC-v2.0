@@ -1,3 +1,5 @@
+import './style.scss';
+
 import TaskCollectionModel from './lib/models/taskCollectionModel';
 import TaskCollectionView from './lib/views/taskCollectionView';
 import TaskCollectionController from './lib/controllers/taskCollectionController';
@@ -17,5 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
     taskCollectionView.handleAddedTask('go do that');
     taskCollectionView.handleAddedTask('king in the castle');
     taskCollectionView.handleAddedTask('uauauiua');
-    console.log(taskCollectionModel);
+    // console.log(taskCollectionModel.properties.tasks[0]);
 });
