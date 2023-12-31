@@ -1,5 +1,6 @@
 import AbstractController from '../Abstracts/controller';
 import TaskModel from '../models/taskModel';
+import TaskView from '../views/taskView';
 
 class TaskCollectionController extends AbstractController {
     constructor(model) {
@@ -8,8 +9,12 @@ class TaskCollectionController extends AbstractController {
 
     addedTask(task) {
         const taskModel = TaskModel.fromString('task', task);
+        const index = this.model.properties.tasks.length;
+        taskModel.properties.index = index;
+        const taskView = new TaskView(taskModel, this);
         this.model.properties.tasks.push(taskModel);
-        this.model.fireEvent('newTask');
+        this.model.properties.views.push(taskView);
+        this.model.fireEvent('updateView');
     }
 
     getTasks() {
@@ -18,7 +23,8 @@ class TaskCollectionController extends AbstractController {
 
     deleteListElement(index) {
         delete this.model.properties.tasks[index];
-        this.model.fireEvent('newTask');
+        delete this.model.properties.views[index];
+        this.model.fireEvent('updateView');
     }
 }
 

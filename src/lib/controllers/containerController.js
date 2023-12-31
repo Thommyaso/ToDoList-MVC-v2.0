@@ -23,7 +23,7 @@ class ContainerController extends AbstractController {
         const taskCollectionController = new TaskCollectionController(taskCollectionModel);
         this.model.properties.list.collectionController = taskCollectionController;
 
-        taskCollectionModel.addObserver('newTask', taskCollectionView);
+        taskCollectionModel.addObserver('updateView', taskCollectionView);
         taskCollectionView.initialize(rootEl, taskCollectionController);
     }
 

@@ -4,7 +4,10 @@ class TaskCollectionModel extends AbstractModel {
     constructor() {
         super();
 
-        this.properties.tasks = [];
+        this.properties = {
+            tasks: [],
+            views: [],
+        };
     }
 
 }

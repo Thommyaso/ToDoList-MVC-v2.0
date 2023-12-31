@@ -31,7 +31,6 @@ class FormView extends AbstractView {
     }
 
     update() {
-        console.log(this);
         this.taskCollectionController.addedTask(this.model.properties.text);
         this.textarea.value = '';
     }
