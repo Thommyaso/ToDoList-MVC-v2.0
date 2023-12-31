@@ -12,6 +12,7 @@ class TaskCollectionController extends AbstractController {
         const index = this.model.properties.tasks.length;
         taskModel.properties.index = index;
         const taskView = new TaskView(taskModel, this);
+        taskView.render();
         this.model.properties.tasks.push(taskModel);
         this.model.properties.views.push(taskView);
         this.model.fireEvent('updateView');
