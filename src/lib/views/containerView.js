@@ -5,16 +5,18 @@ class ContainerView extends AbstractView {
         super(model);
     }
 
-    initialize(rootEl, controller) {
-        this.rootEl = document.querySelector(`#${rootEl}`);
-        this.controller = controller;
-        this.li = document.querySelector(`#${rootEl}__list`);
-        this.form = document.querySelector(`#${rootEl}__form`);
-    }
-
     render() {
-        this.controller.setListObjects(this.li);
-        this.controller.setFormObjects(this.form);
+        this.controller.setListObjects();
+        this.controller.setFormObjects();
+
+        const taskCollectionView = this.model.properties.list.collectionView;
+        const formView = this.model.properties.form.formView;
+
+        taskCollectionView.rootEl = this.rootEl.querySelector('.container__list');
+
+        formView.rootEl = this.rootEl.querySelector('.container__form');
+        formView.render();
+
         this.controller.exampleTasks();
     }
 }

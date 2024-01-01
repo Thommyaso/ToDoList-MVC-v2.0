@@ -13,33 +13,31 @@ class ContainerController extends AbstractController {
         super(model);
     }
 
-    setListObjects(rootEl) {
+    setListObjects() {
         const taskCollectionModel = new TaskCollectionModel();
-        this.model.properties.list.collectionModel = taskCollectionModel;
-
         const taskCollectionView = new TaskCollectionView(taskCollectionModel);
-        this.model.properties.list.collectionView = taskCollectionView;
-
         const taskCollectionController = new TaskCollectionController(taskCollectionModel);
+
+        this.model.properties.list.collectionModel = taskCollectionModel;
+        this.model.properties.list.collectionView = taskCollectionView;
         this.model.properties.list.collectionController = taskCollectionController;
 
         taskCollectionModel.addObserver('updateView', taskCollectionView);
-        taskCollectionView.initialize(rootEl, taskCollectionController);
+        taskCollectionView.controller = taskCollectionController;
     }
 
-    setFormObjects(rootEl) {
+    setFormObjects() {
         const formModel = new FormModel();
-        this.model.properties.form.formModel = formModel;
-
-        const formView = new FormView(formModel, this.model.properties.list.collectionController);
-        this.model.properties.form.formView = formView;
-
+        const formView = new FormView(formModel);
         const formController = new FormController(formModel, this.model.properties.list.collectionController);
+
+        this.model.properties.form.formModel = formModel;
+        this.model.properties.form.formView = formView;
         this.model.properties.form.formController = formController;
 
+        formView.controller = formController;
+        formView.taskCollectioncontroller = this.model.properties.list.collectionController;
         formModel.addObserver('enteredNewTask', formView);
-        formView.initialize(rootEl, formController);
-        formView.render();
     }
 
     exampleTasks() {

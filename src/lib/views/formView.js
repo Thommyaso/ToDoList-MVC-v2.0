@@ -1,17 +1,25 @@
 import AbstractView from '../Abstracts/view';
 
 class FormView extends AbstractView {
-    constructor(model, taskCollectionController) {
+    constructor(model) {
         super(model);
-        this.taskCollectionController = taskCollectionController;
+        this._taskCollectioncontroller = null;
         this.textarea = null;
         this.submitBtn = null;
         this._submitClickHandler = this.submitClickHandler.bind(this);
     }
 
+    get taskCollectionController() {
+        return this._taskCollectionController;
+    }
+
+    set taskCollectionController(controller) {
+        this._taskCollectionController = controller;
+    }
+
     extractElements() {
-        this.textarea = this._rootEl[0];
-        this.submitBtn = this._rootEl[1];
+        this.textarea = this.rootEl.querySelector('.container__textarea');
+        this.submitBtn = this.rootEl.querySelector('.container__submitBtn');
     }
 
     submitClickHandler() {
@@ -31,7 +39,7 @@ class FormView extends AbstractView {
     }
 
     update() {
-        this.taskCollectionController.addedTask(this.model.properties.text);
+        this.taskCollectioncontroller.addedTask(this.model.properties.text);
         this.textarea.value = '';
     }
 
