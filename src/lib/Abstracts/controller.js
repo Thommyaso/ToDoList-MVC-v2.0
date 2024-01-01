@@ -4,23 +4,15 @@ class AbstractController {
             throw new TypeError('Cannot instantiate abstract class directly');
         }
 
-        this.model = model;
+        this._model = model;
     }
 
-    getView() {
-        return this.view;
+    get model() {
+        return this._model;
     }
 
-    getModel() {
-        return this.model;
-    }
-
-    setView(newView) {
-        this.view = newView;
-    }
-
-    setModel(newModel) {
-        this.model = newModel;
+    set model(newModel) {
+        this._model = newModel;
     }
 }
 
