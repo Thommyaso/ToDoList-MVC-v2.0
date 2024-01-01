@@ -22,7 +22,7 @@ class ContainerController extends AbstractController {
         this.model.properties.list.collectionView = taskCollectionView;
         this.model.properties.list.collectionController = taskCollectionController;
 
-        taskCollectionModel.addObserver('updateView', taskCollectionView);
+        taskCollectionModel.addObserver('updated', taskCollectionView);
         taskCollectionView.controller = taskCollectionController;
     }
 

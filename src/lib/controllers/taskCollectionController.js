@@ -15,17 +15,13 @@ class TaskCollectionController extends AbstractController {
         taskView.render();
         this.model.properties.tasks.push(taskModel);
         this.model.properties.views.push(taskView);
-        this.model.fireEvent('updateView');
-    }
-
-    getTasks() {
-        return this.model.properties.tasks;
+        this.model.fireEvent('updated');
     }
 
     deleteListElement(index) {
         delete this.model.properties.tasks[index];
         delete this.model.properties.views[index];
-        this.model.fireEvent('updateView');
+        this.model.fireEvent('updated');
     }
 }
 
