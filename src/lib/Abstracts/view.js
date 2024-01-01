@@ -4,13 +4,17 @@ class AbstractView {
             throw new TypeError('Cannot instantiate abstract class directly');
         }
 
-        this.model = model;
+        this._model = model;
         this._rootEl = null;
         this._controller = null;
     }
 
-    getModel() {
-        return this.model;
+    get model() {
+        return this._model;
+    }
+
+    set model(newModel) {
+        this._model = newModel;
     }
 
     get controller() {
@@ -19,10 +23,6 @@ class AbstractView {
 
     set controller(newController) {
         this._controller = newController;
-    }
-
-    setModel(newModel) {
-        this.model = newModel;
     }
 
     get rootEl() {
@@ -34,10 +34,6 @@ class AbstractView {
     }
 
     render() {
-        // set up in child class
-    }
-
-    update() {
         // set up in child class
     }
 }
