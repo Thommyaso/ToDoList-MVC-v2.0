@@ -39,14 +39,6 @@ class ContainerController extends AbstractController {
         formView.taskCollectioncontroller = this.model.properties.list.collectionController;
         formModel.addObserver('enteredNewTask', formView);
     }
-
-    exampleTasks() {
-        this.model.properties.list.collectionController.addedTask('go do this');
-        this.model.properties.list.collectionController.addedTask('go do that');
-        this.model.properties.list.collectionController.addedTask('king in the castle');
-        this.model.properties.list.collectionController.addedTask('uauauiua');
-    }
-
 }
 
 export default ContainerController;

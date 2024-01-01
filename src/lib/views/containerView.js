@@ -16,8 +16,6 @@ class ContainerView extends AbstractView {
 
         formView.rootEl = this.rootEl.querySelector('.container__form');
         formView.render();
-
-        this.controller.exampleTasks();
     }
 }
 
