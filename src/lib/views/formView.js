@@ -1,4 +1,5 @@
 import AbstractView from '../Abstracts/view';
+import logger from '../utils/logger';
 
 class FormView extends AbstractView {
     constructor(model) {
@@ -26,7 +27,8 @@ class FormView extends AbstractView {
         if (this.textarea) {
             this.controller.handleEnteredValue(this.textarea.value);
         } else {
-            console.error('textarea not available');
+            const error = new Error('textarea not available');
+            throw logger.error(error);
         }
     }
 
@@ -34,7 +36,8 @@ class FormView extends AbstractView {
         if (this.submitBtn) {
             this.submitBtn.addEventListener('click', this._submitClickHandler);
         } else {
-            console.error('submit button not available');
+            const error = new Error('submit button not available');
+            throw logger.error(error);
         }
     }
 
