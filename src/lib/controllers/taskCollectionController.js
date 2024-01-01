@@ -10,7 +10,7 @@ class TaskCollectionController extends AbstractController {
 
     addedTask(task) {
         const id = uuidv4();
-        const taskModel = TaskModel.fromString('task', task);
+        const taskModel = TaskModel.setModelWithTask('task', task);
         const taskView = new TaskView(taskModel, this);
 
         taskModel.set('id', id);

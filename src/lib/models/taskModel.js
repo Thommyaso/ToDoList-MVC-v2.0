@@ -5,7 +5,7 @@ class TaskModel extends AbstractModel {
         super();
     }
 
-    static fromString(key, value) {
+    static setModelWithTask(key, value) {
         const task = new TaskModel();
         task.set(key, value);
         return task;
