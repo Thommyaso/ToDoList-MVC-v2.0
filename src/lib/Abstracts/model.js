@@ -1,4 +1,5 @@
 import AbstractObserver from './observer';
+import logger from '../utils/logger';
 
 class AbstractModel extends AbstractObserver {
     constructor() {
@@ -7,13 +8,13 @@ class AbstractModel extends AbstractObserver {
         }
 
         super();
-
         this.properties = {};
     }
 
     get(key) {
         if (!(key in this.properties)) {
-            console.error(`Property "${key}" not found`);
+            const error = new Error(`Property "${key}" not found`);
+            throw logger.error(error);
         } else {
             return this.properties[key];
         }
@@ -23,7 +24,8 @@ class AbstractModel extends AbstractObserver {
         if (!(key in this.properties)) {
             this.properties[key] = value;
         } else {
-            console.error(`Property "${key}" already exists and cannot be modified`);
+            const error = new Error(`Property "${key}" already exists and cannot be modified`);
+            throw logger.error(error);
         }
     }
 
