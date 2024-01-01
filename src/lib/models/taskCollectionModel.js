@@ -6,7 +6,6 @@ class TaskCollectionModel extends AbstractModel {
 
         this.properties = {
             tasks: [],
-            views: [],
         };
     }
 

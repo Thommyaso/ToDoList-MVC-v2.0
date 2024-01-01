@@ -7,9 +7,9 @@ class TaskCollectionView extends AbstractView {
 
     update() {
         this.rootEl.innerHTML = '';
-        const taskViews = this.model.properties.views;
-        taskViews.forEach((view) => {
-            this._rootEl.appendChild(view.rootEl);
+        const tasks = this.model.properties.tasks;
+        tasks.forEach((task) => {
+            this.rootEl.appendChild(task.taskView.rootEl);
         });
     }
 }

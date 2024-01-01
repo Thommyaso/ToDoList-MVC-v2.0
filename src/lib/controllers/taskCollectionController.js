@@ -1,6 +1,7 @@
 import AbstractController from '../Abstracts/controller';
 import TaskModel from '../models/taskModel';
 import TaskView from '../views/taskView';
+import {v4 as uuidv4} from 'uuid';
 
 class TaskCollectionController extends AbstractController {
     constructor(model) {
@@ -8,19 +9,25 @@ class TaskCollectionController extends AbstractController {
     }
 
     addedTask(task) {
+        const id = uuidv4();
         const taskModel = TaskModel.fromString('task', task);
-        const index = this.model.properties.tasks.length;
-        taskModel.properties.index = index;
         const taskView = new TaskView(taskModel, this);
+
+        taskModel.set('id', id);
         taskView.render();
-        this.model.properties.tasks.push(taskModel);
-        this.model.properties.views.push(taskView);
+
+        const taskObject = {
+            id,
+            taskModel,
+            taskView,
+        };
+
+        this.model.properties.tasks.push(taskObject);
         this.model.fireEvent('updated');
     }
 
-    deleteListElement(index) {
-        delete this.model.properties.tasks[index];
-        delete this.model.properties.views[index];
+    deleteListElement(id) {
+        this.model.properties.tasks = this.model.properties.tasks.filter((obj) => obj.id !== id);
         this.model.fireEvent('updated');
     }
 }

@@ -34,7 +34,8 @@ class TaskView extends AbstractView {
     deleteClickHandler() {
         // to handle deleting of an object i need to pass it to the parent view object to use method 'delete'
         this.removeEventListener();
-        this.taskCollectionController.deleteListElement(this.model.properties.index);
+        console.log(this.model);
+        this.taskCollectionController.deleteListElement(this.model.properties.id);
     }
 
     update() {
