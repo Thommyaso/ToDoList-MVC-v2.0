@@ -6,7 +6,8 @@ class FormController extends AbstractController {
     }
 
     handleEnteredValue(text) {
-        this.model.properties.text = text;
+        this.model.removeKey('text');
+        this.model.set('text', text);
         this.model.fireEvent('enteredNewTask');
     }
 

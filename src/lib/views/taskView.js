@@ -5,14 +5,14 @@ class TaskView extends AbstractView {
         super(model);
         this.taskCollectionController = taskCollectionController;
         this._deleteBtn = '';
-        this._deleteClickHandler = this.deleteClickHandler.bind(this); // Bind the handler to the instance
+        this._deleteClickHandler = this.deleteClickHandler.bind(this);
     }
 
     createListElement() {
         const taskElement = document.createElement('li');
         taskElement.className = 'container__listElement';
         taskElement.innerHTML =
-            `${this.model.properties.task}`;
+            `${this.model.get('task')}`;
         this.rootEl = taskElement;
     }
 
@@ -33,7 +33,7 @@ class TaskView extends AbstractView {
 
     deleteClickHandler() {
         this.removeEventListener();
-        this.taskCollectionController.deleteListElement(this.model.properties.id);
+        this.taskCollectionController.deleteListElement(this.model.get('id'));
     }
 
     render() {

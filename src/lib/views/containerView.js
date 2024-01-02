@@ -8,9 +8,8 @@ class ContainerView extends AbstractView {
     render() {
         this.controller.setListObjects();
         this.controller.setFormObjects();
-
-        const taskCollectionView = this.model.properties.list.collectionView;
-        const formView = this.model.properties.form.formView;
+        const taskCollectionView = this.model.get('list').taskCollectionView;
+        const formView = this.model.get('form').formView;
 
         taskCollectionView.rootEl = this.rootEl.querySelector('.container__list');
 

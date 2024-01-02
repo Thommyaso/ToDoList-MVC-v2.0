@@ -18,9 +18,11 @@ class ContainerController extends AbstractController {
         const taskCollectionView = new TaskCollectionView(taskCollectionModel);
         const taskCollectionController = new TaskCollectionController(taskCollectionModel);
 
-        this.model.properties.list.collectionModel = taskCollectionModel;
-        this.model.properties.list.collectionView = taskCollectionView;
-        this.model.properties.list.collectionController = taskCollectionController;
+        this.model.set('list', {
+            taskCollectionModel,
+            taskCollectionView,
+            taskCollectionController,
+        });
 
         taskCollectionModel.addObserver('updated', () => {
             taskCollectionView.render();
@@ -31,14 +33,17 @@ class ContainerController extends AbstractController {
     setFormObjects() {
         const formModel = new FormModel();
         const formView = new FormView(formModel);
-        const formController = new FormController(formModel, this.model.properties.list.collectionController);
+        const taskCollectionController = this.model.get('list').taskCollectionController;
+        const formController = new FormController(formModel, taskCollectionController);
 
-        this.model.properties.form.formModel = formModel;
-        this.model.properties.form.formView = formView;
-        this.model.properties.form.formController = formController;
+        this.model.set('form', {
+            formModel,
+            formView,
+            formController,
+        });
 
         formView.controller = formController;
-        formView.taskCollectioncontroller = this.model.properties.list.collectionController;
+        formView.taskCollectionController = taskCollectionController;
         formModel.addObserver('enteredNewTask', () => {
             formView.update();
         });

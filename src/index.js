@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     containerView.render();
 
     exampleTasks.forEach((element) => {
-        containerModel.properties.list.collectionController.addedTask(element.task);
+        const taskCollectionController = containerModel.get('list').taskCollectionController;
+        taskCollectionController.addedTask(element.task);
     });
 });
 
