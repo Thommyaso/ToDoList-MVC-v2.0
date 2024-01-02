@@ -36,10 +36,6 @@ class TaskView extends AbstractView {
         this.taskCollectionController.deleteListElement(this.model.properties.id);
     }
 
-    update() {
-        this.render();
-    }
-
     render() {
         this.createListElement();
         this.setUpDeleteBtn();

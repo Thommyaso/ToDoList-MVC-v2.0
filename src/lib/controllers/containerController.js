@@ -22,7 +22,9 @@ class ContainerController extends AbstractController {
         this.model.properties.list.collectionView = taskCollectionView;
         this.model.properties.list.collectionController = taskCollectionController;
 
-        taskCollectionModel.addObserver('updated', taskCollectionView);
+        taskCollectionModel.addObserver('updated', () => {
+            taskCollectionView.render();
+        });
         taskCollectionView.controller = taskCollectionController;
     }
 
@@ -37,7 +39,9 @@ class ContainerController extends AbstractController {
 
         formView.controller = formController;
         formView.taskCollectioncontroller = this.model.properties.list.collectionController;
-        formModel.addObserver('enteredNewTask', formView);
+        formModel.addObserver('enteredNewTask', () => {
+            formView.update();
+        });
     }
 }
 

@@ -5,7 +5,7 @@ class TaskCollectionView extends AbstractView {
         super(model);
     }
 
-    update() {
+    render() {
         this.rootEl.innerHTML = '';
         const tasks = this.model.properties.tasks;
         tasks.forEach((task) => {
