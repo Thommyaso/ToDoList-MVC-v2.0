@@ -10,9 +10,9 @@ class TaskCollectionController extends AbstractController {
     addedTask(task) {
         const id = uuidv4();
         const taskModel = TaskModel.setModelWithTask('task', task);
+        const tasks = this.model.get('tasks');
 
         taskModel.set('id', id);
-        const tasks = this.model.get('tasks');
         tasks.push(taskModel);
         this.model.fireEvent('updated');
     }
