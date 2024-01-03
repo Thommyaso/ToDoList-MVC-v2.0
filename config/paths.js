@@ -9,10 +9,10 @@ const common = {
 
 module.exports = {
     main: {
-        mainEntry: './src/js/index.js',
+        mainEntry: './src/index.js',
         htmlTemplate: './src/index.html',
         watchHtml: 'src/**/*.html',
-        styleFolder: '../src/styles',
+        styleFile: '../src',
     },
     dev: {
         outputFolder: `./${common.devFolder}`,

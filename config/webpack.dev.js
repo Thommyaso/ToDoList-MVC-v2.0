@@ -41,7 +41,7 @@ module.exports = merge(common, {
             },
             {
                 test: /\.scss$/,
-                include: path.resolve(__dirname, paths.main.styleFolder),
+                include: path.resolve(__dirname, paths.main.styleFile),
                 use: [
                     'style-loader',
                     'css-loader',

@@ -25,7 +25,7 @@ module.exports = merge(common, sprites, {
         rules: [
             {
                 test: /\.scss$/,
-                include: path.resolve(__dirname, paths.main.styleFolder),
+                include: path.resolve(__dirname, paths.main.styleFile),
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
