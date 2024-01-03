@@ -1,9 +1,9 @@
 const express = require('express');
-// const rawTasks = require('./src/exampleTasks.json');
+const rawTasks = require('./src/exampleTasks.json');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const app = express();
-let tasks = [];
+let tasks = [...rawTasks];
 
 app.use((__req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -31,7 +31,7 @@ app.post('/task', function (req, res) {
 });
 
 app.delete('/task/:id', function (req, res) {
-    const id = req.params.id; // parseInt(req.params.id);
+    const id = req.params.id;
     tasks = tasks.filter((obj) => obj.id !== id);
     res.status(200).json({
         tasks,

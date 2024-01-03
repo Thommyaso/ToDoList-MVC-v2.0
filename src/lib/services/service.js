@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
 
 class Service {
     constructor(baseUrl) {
@@ -34,7 +33,6 @@ class Service {
 
     async deleteUser(id) {
         try {
-
             const requestBody = {
                 method: 'delete',
                 url: `${this.baseUrl}task/${id}`,

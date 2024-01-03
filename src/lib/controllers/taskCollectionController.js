@@ -1,6 +1,5 @@
 import AbstractController from '../Abstracts/controller';
 import TaskModel from '../models/taskModel';
-// import {v4 as uuidv4} from 'uuid';
 import Service from '../services/service';
 
 class TaskCollectionController extends AbstractController {
@@ -16,17 +15,6 @@ class TaskCollectionController extends AbstractController {
     set service(baseUrl) {
         this._service = new Service(baseUrl);
     }
-
-    /* async readTasks() {
-        this.model.set('tasks', []);
-        const aaa = await this.service.getUser('task');
-        console.log(aaa);
-        aaa.data.forEach((element) => {
-            const taskModel = TaskModel.fromJSON(element);
-
-            this.model.addTask(taskModel);
-        });
-    } */
 
     async createTask(task) {
         const receivedTask = await this.service.postUser('task', task);
@@ -46,6 +34,5 @@ class TaskCollectionController extends AbstractController {
         this.model.fireEvent('updated');
     }
 }
-
 
 export default TaskCollectionController;
