@@ -1,12 +1,12 @@
-import AbstractModel from '../Abstracts/model';
+// import AbstractModel from '../Abstracts/model';
 
-class FormModel extends AbstractModel {
-    constructor() {
-        super();
+// class FormModel extends AbstractModel {
+//     constructor() {
+//         super();
 
-        this.properties.text = '';
+//         this.properties.text = '';
 
-    }
-}
+//     }
+// }
 
-export default FormModel;
+// export default FormModel;

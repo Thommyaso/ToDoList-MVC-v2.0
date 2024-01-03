@@ -7,24 +7,29 @@ class TaskCollectionController extends AbstractController {
         super(model);
     }
 
-    addedTask(task) {
-        const id = uuidv4();
-        const taskModel = TaskModel.setModelWithTask('task', task);
-        const tasks = this.model.get('tasks');
+    createTask(task) {
+        // const id = uuidv4();
+        const taskModel = TaskModel.fromJSON({
+            id: uuidv4(),
+            task,
+        });
 
-        taskModel.set('id', id);
-        tasks.push(taskModel);
-        this.model.fireEvent('updated');
+        // const tasks = this.model.get('tasks');
+
+        // taskModel.set('id', id);
+        // tasks.push(taskModel);
+        // this.model.fireEvent('updated');
+        this.model.addTask(taskModel);
     }
 
-    deleteListElement(id) {
-        let tasks = this.model.get('tasks');
-        tasks = tasks.filter((obj) => obj.properties.id !== id);
+    // deleteListElement(id) {
+    //     let tasks = this.model.get('tasks');
+    //     tasks = tasks.filter((obj) => obj.properties.id !== id);
 
-        this.model.removeKey('tasks');
-        this.model.set('tasks', tasks);
-        this.model.fireEvent('updated');
-    }
+    //     // this.model.removeKey('tasks');
+    //     this.model.set('tasks', tasks);
+    //     this.model.fireEvent('updated');
+    // }
 }
 
 

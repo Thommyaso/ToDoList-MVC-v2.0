@@ -15,6 +15,10 @@ class AbstractObserver {
         this.events[eventName].push(callback);
     }
 
+    removeObserver(eventName) {
+        delete this.events[eventName];
+    }
+
     fireEvent(eventName, data) {
         if (Array.isArray(this.events[eventName])) {
             const observers = [...this.events[eventName]];

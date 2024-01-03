@@ -1,4 +1,4 @@
-import AbstractModel from '../Abstracts/model';
+/* import AbstractModel from '../Abstracts/model';
 
 class ContainerModel extends AbstractModel {
     constructor() {
@@ -7,4 +7,4 @@ class ContainerModel extends AbstractModel {
     }
 }
 
-export default ContainerModel;
+export default ContainerModel; */

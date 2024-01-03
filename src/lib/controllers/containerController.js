@@ -1,12 +1,12 @@
 import AbstractController from '../Abstracts/controller';
 
-import TaskCollectionModel from '../models/taskCollectionModel';
-import TaskCollectionView from '../views/taskCollectionView';
-import TaskCollectionController from './taskCollectionController';
+// import TaskCollectionModel from '../models/taskCollectionModel';
+// import TaskCollectionView from '../views/taskCollectionView';
+// import TaskCollectionController from './taskCollectionController';
 
-import FormController from './formController';
-import FormModel from '../models/formModel';
-import FormView from '../views/formView';
+// import FormController from './formController';
+// import FormModel from '../models/formModel';
+// import FormView from '../views/formView';
 
 class ContainerController extends AbstractController {
     constructor(model) {
@@ -14,44 +14,45 @@ class ContainerController extends AbstractController {
     }
 
     setListObjects() {
-        const taskCollectionModel = new TaskCollectionModel();
-        const taskCollectionView = new TaskCollectionView(taskCollectionModel);
-        const taskCollectionController = new TaskCollectionController(taskCollectionModel);
+        // const taskCollectionModel = new TaskCollectionModel();
+        // const taskCollectionView = new TaskCollectionView(taskCollectionModel);
+        // const taskCollectionController = new TaskCollectionController(taskCollectionModel);
 
-        this.model.set('list', {
-            taskCollectionModel,
-            taskCollectionView,
-            taskCollectionController,
-        });
+        // this.model.set('list', {
+        //     taskCollectionModel,
+        //     taskCollectionView,
+        //     taskCollectionController,
+        // });
 
-        taskCollectionModel.addObserver('updated', () => {
-            taskCollectionView.render();
-        });
-        taskCollectionView.controller = taskCollectionController;
+        // taskCollectionModel.addObserver('updated', () => {
+        //     taskCollectionView.render();
+        // });
+        // taskCollectionView.controller = taskCollectionController;
     }
 
     setFormObjects() {
-        const formModel = new FormModel();
-        const formView = new FormView(formModel);
-        const taskCollectionController = this.model.get('list').taskCollectionController;
-        const formController = new FormController(formModel, taskCollectionController);
+        // const formModel = new FormModel();
+        // const formView = new FormView(formModel);
+        // const taskCollectionController = this.model.get('list').taskCollectionController;
+        // const formController = new FormController(formModel, taskCollectionController);
 
-        this.model.addObserver('rendered', () => {
-            formView.render();
-        });
+        // this.model.addObserver('rendered', () => {
+        //     // formView.rootEl = this.rootEl.querySelector('.container__list');
+        //     // formView.render();
+        // });
 
-        this.model.set('form', {
-            formModel,
-            formView,
-            formController,
-        });
+        // this.model.set('form', {
+        //     formModel,
+        //     formView,
+        //     formController,
+        // });
 
-        formView.controller = formController;
-        formView.taskCollectionController = taskCollectionController;
+        // formView.controller = formController;
+        // formView.taskCollectionController = taskCollectionController;
 
-        formModel.addObserver('enteredNewTask', () => {
-            formView.update();
-        });
+        // formModel.addObserver('enteredNewTask', () => {
+        //     formView.update();
+        // });
     }
 }
 

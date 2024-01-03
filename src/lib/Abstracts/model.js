@@ -14,19 +14,20 @@ class AbstractModel extends AbstractObserver {
     get(key) {
         if (!(key in this.properties)) {
             const error = new Error(`Property "${key}" not found`);
-            throw logger.error(error);
+            logger.error(error);
+            throw error;
         } else {
             return this.properties[key];
         }
     }
 
     set(key, value) {
-        if (!(key in this.properties)) {
-            this.properties[key] = value;
-        } else {
-            const error = new Error(`Property "${key}" already exists and cannot be modified`);
-            throw logger.error(error);
-        }
+        // if (!(key in this.properties)) {
+        this.properties[key] = value;
+        // } else {
+        //     const error = new Error(`Property "${key}" already exists and cannot be modified`);
+        //     throw logger.error(error);
+        // }
     }
 
     removeKey(key) {

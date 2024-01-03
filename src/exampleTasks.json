@@ -1,18 +1,22 @@
 [
     {
-        "task": "go do this"
+        "task": "go do this",
+        "id": 0
     },
 
     {
-        "task": "go do thad"
+        "task": "go do thad",
+        "id": 1
     },
 
     {
-        "task": "king in the castle"
+        "task": "king in the castle",
+        "id": 2
     },
 
     {
-        "task": "uauauiua"
+        "task": "uauauiua",
+        "id": 3
     }
 ]
 

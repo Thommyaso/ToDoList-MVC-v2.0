@@ -4,6 +4,7 @@ import TaskView from '../views/taskView';
 class TaskCollectionView extends AbstractView {
     constructor(model) {
         super(model);
+        this.model.addObserver('updated', this.render.bind(this));
     }
 
     render() {

@@ -5,10 +5,18 @@ class TaskModel extends AbstractModel {
         super();
     }
 
-    static setModelWithTask(key, value) {
-        const task = new TaskModel();
-        task.set(key, value);
-        return task;
+    // static setModelWithTask(key, value) {
+    //     const task = new TaskModel();
+    //     task.set(key, value);
+    //     return task;
+    // }
+
+    static fromJSON(data) {
+        const {id, task} = data;
+        const result = new TaskModel();
+        result.set('id', id);
+        result.set('task', task);
+        return result;
     }
 }
 
