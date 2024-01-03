@@ -22,12 +22,7 @@ class AbstractModel extends AbstractObserver {
     }
 
     set(key, value) {
-        // if (!(key in this.properties)) {
         this.properties[key] = value;
-        // } else {
-        //     const error = new Error(`Property "${key}" already exists and cannot be modified`);
-        //     throw logger.error(error);
-        // }
     }
 
     removeKey(key) {

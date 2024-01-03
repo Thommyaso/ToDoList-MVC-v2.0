@@ -19,7 +19,6 @@ class TaskCollectionModel extends AbstractModel {
     deleteTaskById(id) {
         const tasks = this.get('tasks');
 
-        // this.model.removeKey('tasks');
         this.set('tasks', tasks.filter((obj) => obj.properties.id !== id));
         this.fireEvent('updated');
     }
@@ -32,7 +31,6 @@ class TaskCollectionModel extends AbstractModel {
         });
         return taskCollectionModel;
     }
-
 }
 
 export default TaskCollectionModel;
