@@ -4,6 +4,14 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const app = express();
 let tasks = [...rawTasks];
+
+app.use((__req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
 app.use(bodyParser.json());
 
 app.get('/task', function (__req, res) {
@@ -11,14 +19,14 @@ app.get('/task', function (__req, res) {
 });
 
 app.post('/task', function (req, res) {
-    console.log(req.body);
     const {task} = req.body;
-    tasks.push({
+    const createdTask = {
         task,
         id: uuid.v4(),
-    });
+    };
+    tasks.push(createdTask);
     res.status(200).json({
-        status: 'ok',
+        createdTask,
     });
 });
 
