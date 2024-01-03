@@ -8,8 +8,7 @@ class Service {
 
     async getUser(path) {
         try {
-            const response = await axios.get(`${this.baseUrl}${path}`);
-            console.log(response);
+            return await axios.get(`${this.baseUrl}${path}`);
         } catch (error) {
             console.error(error);
         }
@@ -28,6 +27,20 @@ class Service {
             const response = await axios(requestBody);
 
             return await response.data.createdTask;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async deleteUser(id) {
+        try {
+
+            const requestBody = {
+                method: 'delete',
+                url: `${this.baseUrl}task/${id}`,
+            };
+
+            return await axios(requestBody);
         } catch (error) {
             console.error(error);
         }

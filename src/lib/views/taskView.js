@@ -34,7 +34,6 @@ class TaskView extends AbstractView {
     deleteClickHandler() {
         this.removeEventListener();
         this.taskCollectionController.removeTask(this.model.get('id'));
-        this.model.fireEvent('removed');
     }
 
     render() {

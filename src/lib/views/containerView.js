@@ -9,6 +9,7 @@ class ContainerView extends AbstractView {
     }
 
     render() {
+
         const taskCollectionView = new TaskCollectionView(this.model);
         const taskCollectionController = new TaskCollectionController(this.model);
         const formView = new FormView(this.model);
@@ -23,6 +24,7 @@ class ContainerView extends AbstractView {
         formView.rootEl = this.rootEl.querySelector('.container__form');
         formView.init();
         formView.render();
+        // this.model = taskCollectionController.readTasks();
     }
 }
 

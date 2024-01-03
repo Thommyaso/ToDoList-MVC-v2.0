@@ -17,17 +17,33 @@ class TaskCollectionController extends AbstractController {
         this._service = new Service(baseUrl);
     }
 
-    async createTask(task) {
+    /* async readTasks() {
+        this.model.set('tasks', []);
+        const aaa = await this.service.getUser('task');
+        console.log(aaa);
+        aaa.data.forEach((element) => {
+            const taskModel = TaskModel.fromJSON(element);
 
+            this.model.addTask(taskModel);
+        });
+    } */
+
+    async createTask(task) {
         const receivedTask = await this.service.postUser('task', task);
         const taskModel = TaskModel.fromJSON(receivedTask);
 
         this.model.addTask(taskModel);
     }
 
-    removeTask(id) {
-        console.log(id, 'hereeee');
+    async removeTask(id) {
+        const receivedList = await this.service.deleteUser(id);
+        this.model.set('tasks', []);
+        receivedList.data.tasks.forEach((task) => {
+            const taskModel = TaskModel.fromJSON(task);
 
+            this.model.addTask(taskModel);
+        });
+        this.model.fireEvent('updated');
     }
 }
 
