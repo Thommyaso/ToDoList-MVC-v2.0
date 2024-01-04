@@ -5,40 +5,39 @@ class Service {
         this.baseUrl = baseUrl;
     }
 
-    async getUser(path) {
+    async getTasks() {
         try {
-            return await axios.get(`${this.baseUrl}${path}`);
+            const response = await axios.get(this.baseUrl);
+            return response.data;
         } catch (error) {
             console.error(error);
         }
     }
 
-    async postUser(path, task) {
+    async postTask(task) {
         try {
             const requestBody = {
                 method: 'post',
-                url: `${this.baseUrl}${path}`,
+                url: this.baseUrl,
                 data: {
                     task: task,
                 },
             };
-
-            const response = await axios(requestBody);
-
-            return await response.data.createdTask;
+            const value = await axios(requestBody);
+            return value.data.createdTask;
         } catch (error) {
             console.error(error);
         }
     }
 
-    async deleteUser(id) {
+    async deleteTask(id) {
         try {
             const requestBody = {
                 method: 'delete',
-                url: `${this.baseUrl}task/${id}`,
+                url: `${this.baseUrl}${id}`,
             };
-
-            return await axios(requestBody);
+            const response = await axios(requestBody);
+            return response.data.tasks;
         } catch (error) {
             console.error(error);
         }
