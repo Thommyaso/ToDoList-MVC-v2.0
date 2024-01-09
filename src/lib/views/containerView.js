@@ -15,13 +15,20 @@ class ContainerView extends AbstractView {
 
         taskCollectionView.controller = taskController;
         taskCollectionView.rootEl = this.rootEl.querySelector('.container__list');
-        taskCollectionView.render();
 
         formView.controller = taskController;
         formView.rootEl = this.rootEl.querySelector('.container__form');
         formView.init();
         formView.render();
-        await taskController.getTasks();
+        taskCollectionView.showLoader();
+        taskController.getTasks()
+            .then(() => {
+                taskCollectionView.render();
+            })
+            .catch((error) => {
+                taskCollectionView.showError();
+                console.error(error);
+            });
     }
 }
 

@@ -22,38 +22,25 @@ class taskController extends AbstractController {
         this.model.addTask(taskModel);
     }
 
-    async getTasks() {
-        let data = [];
-        try {
-            data = await this.service.getTasks();
-        } catch (error) {
-            console.error(error);
-            console.log('dupsko');
-            return;
-        }
-        const allTasks = data.data;
-        allTasks.forEach((task) => {
-            const taskModel = TaskModel.fromJSON(task);
+    getTasks() {
+        return this.service.getTasks()
+            .then((result) => {
+                const allTasks = result.data;
+                allTasks.forEach((task) => {
+                    const taskModel = TaskModel.fromJSON(task);
 
-            this.model.addTask(taskModel);
-        });
-        this.model.fireEvent('updated');
+                    this.model.addTask(taskModel);
+                });
+                this.model.fireEvent('updated');
+
+            })
+            .catch(() => {
+                const error = new Error('can not get task list');
+                return Promise.reject(error);
+            });
     }
 
     removeTaskById(id) {
-        // Version 1:
-        // return new Promise((resolve, reject) => {
-        //     this.service.deleteTask(id)
-        //         .then(() => {
-        //             this.model.deleteTaskById(id);
-        //             resolve();
-        //         })
-        //         .catch((error) => {
-        //             console.error(error);
-        //             reject();
-        //         });
-        // });
-        // Version 2:
         return this.service.deleteTask(id)
             .then(() => {
                 this.model.deleteTaskById(id);
