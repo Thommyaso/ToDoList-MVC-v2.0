@@ -1,46 +1,31 @@
 import axios from 'axios';
 
 class Service {
-    constructor(baseUrl) {
-        this.baseUrl = baseUrl;
+    constructor() {
+        this.baseUrl = 'http://localhost:3000/task/';
     }
 
     async getTasks() {
-        try {
-            const response = await axios.get(this.baseUrl);
-            return response.data;
-        } catch (error) {
-            console.error(error);
-        }
+        return await axios.get(this.baseUrl);
     }
 
     async postTask(task) {
-        try {
-            const requestBody = {
-                method: 'post',
-                url: this.baseUrl,
-                data: {
-                    task: task,
-                },
-            };
-            const value = await axios(requestBody);
-            return value.data.createdTask;
-        } catch (error) {
-            console.error(error);
-        }
+        const requestBody = {
+            method: 'post',
+            url: this.baseUrl,
+            data: {
+                task: task,
+            },
+        };
+        return await axios(requestBody);
     }
 
     async deleteTask(id) {
-        try {
-            const requestBody = {
-                method: 'delete',
-                url: `${this.baseUrl}${id}`,
-            };
-            const response = await axios(requestBody);
-            return response.data.tasks;
-        } catch (error) {
-            console.error(error);
-        }
+        const requestBody = {
+            method: 'delete',
+            url: `${this.baseUrl}${id}`,
+        };
+        return await axios(requestBody);
     }
 }
 
