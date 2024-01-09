@@ -15,7 +15,10 @@ app.use((__req, res, next) => {
 app.use(bodyParser.json());
 
 app.get('/task', function (__req, res) {
-    res.json(tasks);
+    setTimeout(() => {
+        res.json(tasks);
+    }, 1500);
+    // res.json(tasks);
 });
 
 app.post('/task', function (req, res) {
@@ -25,18 +28,29 @@ app.post('/task', function (req, res) {
         id: uuid.v4(),
     };
     tasks.push(createdTask);
-    res.status(200).json({
-        createdTask,
-    });
+    setTimeout(() => {
+        res.status(200).json({
+            createdTask,
+        });
+    }, 1500);
+    // res.status(200).json({
+    //     createdTask,
+    // });
 });
 
 app.delete('/task/:id', function (req, res) {
     const id = req.params.id;
     tasks = tasks.filter((obj) => obj.id !== id);
-    res.status(200).json({
-        tasks,
-        status: 'ok',
-    });
+    // res.status(200).json({
+    //     tasks,
+    //     status: 'ok',
+    // });
+    setTimeout(() => {
+        res.status(200).json({
+            tasks,
+            status: 'ok',
+        });
+    }, 1500);
 });
 
 app.listen(3000);

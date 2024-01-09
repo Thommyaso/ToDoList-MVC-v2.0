@@ -9,49 +9,55 @@ class taskController extends AbstractController {
     }
 
     async createTask(task) {
+        let result = {};
         try {
-            const data = await this.service.postTask(task);
-            const receivedTask = data.data.createdTask;
-            const taskModel = TaskModel.fromJSON(receivedTask);
-
-            this.model.addTask(taskModel);
-
+            result = await this.service.postTask(task);
         } catch (error) {
             console.error(error);
+            return;
         }
+        const receivedTask = result.data.createdTask;
+        const taskModel = TaskModel.fromJSON(receivedTask);
+
+        this.model.addTask(taskModel);
     }
 
     async getTasks() {
+        let data = [];
         try {
-            const data = await this.service.getTasks();
-            const allTasks = data.data;
-            allTasks.forEach((task) => {
-                const taskModel = TaskModel.fromJSON(task);
-
-                this.model.addTask(taskModel);
-            });
-            this.model.fireEvent('updated');
-
+            data = await this.service.getTasks();
         } catch (error) {
             console.error(error);
+            console.log('dupsko');
+            return;
         }
+        const allTasks = data.data;
+        allTasks.forEach((task) => {
+            const taskModel = TaskModel.fromJSON(task);
+
+            this.model.addTask(taskModel);
+        });
+        this.model.fireEvent('updated');
     }
 
-    async removeTaskById(id) {
-        try {
-            const data = await this.service.deleteTask(id);
-            const receivedList = data.data.tasks;
-            this.model.set('tasks', []);
-            receivedList.forEach((task) => {
-                const taskModel = TaskModel.fromJSON(task);
-
-                this.model.addTask(taskModel);
+    removeTaskById(id) {
+        // Version 1:
+        // return new Promise((resolve, reject) => {
+        //     this.service.deleteTask(id)
+        //         .then(() => {
+        //             this.model.deleteTaskById(id);
+        //             resolve();
+        //         })
+        //         .catch((error) => {
+        //             console.error(error);
+        //             reject();
+        //         });
+        // });
+        // Version 2:
+        return this.service.deleteTask(id)
+            .then(() => {
+                this.model.deleteTaskById(id);
             });
-            this.model.fireEvent('updated');
-
-        } catch (error) {
-            console.error(error);
-        }
     }
 }
 

@@ -10,22 +10,11 @@ class Service {
     }
 
     async postTask(task) {
-        const requestBody = {
-            method: 'post',
-            url: this.baseUrl,
-            data: {
-                task: task,
-            },
-        };
-        return await axios(requestBody);
+        return await axios.post(this.baseUrl, {task});
     }
 
     async deleteTask(id) {
-        const requestBody = {
-            method: 'delete',
-            url: `${this.baseUrl}${id}`,
-        };
-        return await axios(requestBody);
+        return await axios.delete(`${this.baseUrl}${id}`);
     }
 }
 

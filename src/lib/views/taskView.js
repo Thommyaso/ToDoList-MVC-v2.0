@@ -32,8 +32,14 @@ class TaskView extends AbstractView {
     }
 
     deleteClickHandler() {
-        this.removeEventListener();
-        this.taskController.removeTaskById(this.model.get('id'));
+        const id = this.model.get('id');
+        this.taskController.removeTaskById(id)
+            .then(() => {
+                this.removeEventListener();
+            })
+            .catch(() => {
+                console.log(`deleteng task with id: "${id}" failed`);
+            });
     }
 
     render() {
