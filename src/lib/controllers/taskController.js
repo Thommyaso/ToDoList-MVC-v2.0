@@ -8,18 +8,20 @@ class taskController extends AbstractController {
         this.service = new Service();
     }
 
-    async createTask(task) {
-        let result = {};
-        try {
-            result = await this.service.postTask(task);
-        } catch (error) {
-            console.error(error);
-            return;
-        }
-        const receivedTask = result.data.createdTask;
-        const taskModel = TaskModel.fromJSON(receivedTask);
+    createTask(task) {
+        return this.service.postTask(task)
+            .then((result) => {
+                const receivedTask = result.data.createdTask;
+                const taskModel = TaskModel.fromJSON(receivedTask);
 
-        this.model.addTask(taskModel);
+                this.model.addTask(taskModel);
+
+            })
+            .catch(() => {
+                const error = new Error('can not create task');
+
+                return Promise.reject(error);
+            });
     }
 
     getTasks() {
@@ -44,6 +46,11 @@ class taskController extends AbstractController {
         return this.service.deleteTask(id)
             .then(() => {
                 this.model.deleteTaskById(id);
+            })
+            .catch(() => {
+                const error = new Error('can not remove task');
+
+                return Promise.reject(error);
             });
     }
 }
