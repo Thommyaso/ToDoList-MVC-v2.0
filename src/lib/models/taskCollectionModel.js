@@ -11,7 +11,6 @@ class TaskCollectionModel extends AbstractModel {
     }
 
     addTask(task) {
-        task.addObserver('removed', this.deleteTaskById.bind(this, task.get('id')));
         this.get('tasks').push(task);
         this.fireEvent('updated');
     }

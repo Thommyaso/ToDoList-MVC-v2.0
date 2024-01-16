@@ -1,26 +1,34 @@
 import AbstractView from '../Abstracts/view';
 import FormView from '../views/formView';
 import TaskCollectionView from '../views/taskCollectionView';
-import TaskCollectionController from '../controllers/taskCollectionController';
+import TaskController from '../controllers/taskController';
 
 class ContainerView extends AbstractView {
     constructor(model) {
         super(model);
     }
 
-    render() {
+    async render() {
+        const taskController = new TaskController(this.model);
         const taskCollectionView = new TaskCollectionView(this.model);
-        const taskCollectionController = new TaskCollectionController(this.model);
         const formView = new FormView(this.model);
 
-        taskCollectionView.controller = taskCollectionController;
+        taskCollectionView.controller = taskController;
         taskCollectionView.rootEl = this.rootEl.querySelector('.container__list');
-        taskCollectionView.render();
 
-        formView.controller = taskCollectionController;
+        formView.controller = taskController;
         formView.rootEl = this.rootEl.querySelector('.container__form');
         formView.init();
         formView.render();
+        taskCollectionView.showLoader();
+        taskController.getTasks()
+            .then(() => {
+                taskCollectionView.render();
+            })
+            .catch((error) => {
+                taskCollectionView.showError();
+                console.error(error);
+            });
     }
 }
 
