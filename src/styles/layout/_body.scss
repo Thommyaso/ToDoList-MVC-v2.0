@@ -13,5 +13,14 @@ a {
         color: gray;
         background-color: beige;
     }
+
+    &__alert {
+        visibility: hidden;
+    }
+
+    &__alert-active {
+        visibility: visible;
+        color: red;
+    }
 }
   

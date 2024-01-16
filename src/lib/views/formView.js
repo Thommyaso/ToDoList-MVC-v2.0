@@ -9,21 +9,34 @@ class FormView extends AbstractView {
     }
 
     init() {
+        const data = {};
+        const customEvent = new CustomEvent('onValidation', {detail: data});
+
         this.textarea = this.rootEl.querySelector('.container__textarea');
         this.submitBtn = this.rootEl.querySelector('.container__submitBtn');
         this.submitBtn.addEventListener('click', () => {
-            this.controller.createTask(this.textarea.value)
-                .then(() => {
-                    this.render();
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            const task = this.textarea.value;
+
+            if ((task.length > 0)) {
+                data.value = true;
+                this.rootEl.dispatchEvent(customEvent);
+                this.controller.createTask(task)
+                    .then(() => {
+                        this.render();
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            } else {
+                data.value = false;
+                this.rootEl.dispatchEvent(customEvent);
+                return;
+            }
         });
     }
 
     render() {
-        this.textarea.value = '';
+        this.textarea.value = null;
     }
 }
 
