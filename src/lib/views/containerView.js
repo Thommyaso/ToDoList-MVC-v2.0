@@ -10,6 +10,17 @@ class ContainerView extends AbstractView {
         this.messageEl = null;
     }
 
+    decision(data) {
+        if (!(data.detail.status)) {
+            console.log(data);
+            this.messageEl.innerHTML = data.detail.message;
+            this.messageEl.classList.add(data.detail.class);
+            return;
+        }
+        this.messageEl.classList = '';
+        this.messageEl.classList.add('container__alert');
+    }
+
     async render() {
         const taskController = new TaskController(this.model);
         const taskCollectionView = new TaskCollectionView(this.model);
@@ -17,32 +28,26 @@ class ContainerView extends AbstractView {
 
         taskCollectionView.controller = taskController;
         taskCollectionView.rootEl = this.rootEl.querySelector('.container__list');
-        taskCollectionView.rootEl.addEventListener('onLiElBtnClicked', () => {
-            this.messageEl.classList.remove('container__alert-active');
-        });
+        taskCollectionView.rootEl.addEventListener('onLiElBtnClicked', (data) => this.decision(data));
 
         this.messageEl = this.rootEl.querySelector('.container__alert');
 
         formView.controller = taskController;
         formView.rootEl = this.rootEl.querySelector('.container__form');
         formView.init();
-        formView.rootEl.addEventListener('onValidation', (isValid) => {
-            if (isValid.detail.value) {
-                this.messageEl.classList.remove('container__alert-active');
-                return;
-            }
-            this.messageEl.innerHTML = 'invalid task';
-            this.messageEl.classList.add('container__alert-active');
-        });
+        formView.rootEl.addEventListener('onValidation', (data) => this.decision(data));
         formView.render();
 
-        taskCollectionView.showLoader();
+        this.messageEl.innerHTML = 'loading';
+        this.messageEl.classList.add('container__alert-infoActive');
         taskController.getTasks()
             .then(() => {
                 taskCollectionView.render();
+                this.messageEl.classList.remove('container__alert-infoActive');
             })
             .catch((error) => {
-                taskCollectionView.showError();
+                this.messageEl.innerHTML = 'there was a problem during downloading task list';
+                this.messageEl.classList.add('container__alert-active');
                 console.error(error);
             });
     }

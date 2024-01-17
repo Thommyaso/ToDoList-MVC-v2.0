@@ -5,7 +5,8 @@ class TaskView extends AbstractView {
         super(model);
         this.taskController = taskController;
         this._deleteBtn = '';
-        this.customEvent = new Event('onButtonClicked');
+        /* this.data = {message: 'asdgfadhgfga'};
+        this.customEvent = new CustomEvent('onButtonClicked', {detail: this.data}); */
         this._deleteClickHandler = this.deleteClickHandler.bind(this);
     }
 
@@ -33,14 +34,23 @@ class TaskView extends AbstractView {
     }
 
     deleteClickHandler() {
-        this.rootEl.dispatchEvent(this.customEvent);
+        const data = {class: 'container__alert-active'};
+        const customEvent = new CustomEvent('onButtonClicked', {detail: data});
+
         const id = this.model.get('id');
         this.taskController.removeTaskById(id)
             .then(() => {
+                data.status = true;
+                this.rootEl.dispatchEvent(customEvent);
                 this.removeEventListener();
             })
             .catch(() => {
-                console.log(`deleteng task with id: "${id}" failed`);
+
+                data.status = false;
+                data. message = 'deleting task failed';
+
+                this.rootEl.dispatchEvent(customEvent);
+                console.log(`deleting task with id: "${id}" failed`);
             });
     }
 

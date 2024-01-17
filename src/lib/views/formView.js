@@ -9,7 +9,7 @@ class FormView extends AbstractView {
     }
 
     init() {
-        const data = {};
+        const data = {class: 'container__alert-active'};
         const customEvent = new CustomEvent('onValidation', {detail: data});
 
         this.textarea = this.rootEl.querySelector('.container__textarea');
@@ -20,20 +20,23 @@ class FormView extends AbstractView {
             const task = this.textarea.value;
 
             if ((task.length > 0)) {
-                data.value = true;
-                this.rootEl.dispatchEvent(customEvent);
                 this.controller.createTask(task)
                     .then(() => {
+                        data.status = true;
                         this.render();
                     })
                     .catch((error) => {
+                        data.status = false;
+                        data.message = error;
                         console.error(error);
                     })
                     .finally(() => {
+                        this.rootEl.dispatchEvent(customEvent);
                         this.submitBtn.disabled = false;
                     });
             } else {
-                data.value = false;
+                data.status = false;
+                data.message = 'invalid task';
                 this.rootEl.dispatchEvent(customEvent);
                 this.submitBtn.disabled = false;
                 return;

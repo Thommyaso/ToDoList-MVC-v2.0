@@ -7,14 +7,6 @@ class TaskCollectionView extends AbstractView {
         this.model.addObserver('updated', this.render.bind(this));
     }
 
-    showLoader() {
-        this.rootEl.innerHTML = 'loading';
-    }
-
-    showError() {
-        this.rootEl.innerHTML = 'there was a problem during downloading task list';
-    }
-
     render() {
         this.rootEl.innerHTML = '';
         const tasks = this.model.get('tasks');
@@ -22,8 +14,9 @@ class TaskCollectionView extends AbstractView {
         tasks.forEach((task) => {
             const taskView = new TaskView(task, this.controller);
             taskView.render();
-            taskView.rootEl.addEventListener('onButtonClicked', () => {
-                const customEvent = new Event('onLiElBtnClicked');
+            taskView.rootEl.addEventListener('onButtonClicked', (data) => {
+                console.log(data);
+                const customEvent = new CustomEvent('onLiElBtnClicked', data);
                 this.rootEl.dispatchEvent(customEvent);
             });
             this.rootEl.appendChild(taskView.rootEl);

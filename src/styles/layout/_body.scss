@@ -18,6 +18,11 @@ a {
         visibility: hidden;
     }
 
+    &__alert-infoActive {
+        visibility: visible;
+        color: green;
+    }
+
     &__alert-active {
         visibility: visible;
         color: red;
