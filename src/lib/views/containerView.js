@@ -22,7 +22,6 @@ class ContainerView extends AbstractView {
         });
 
         this.messageEl = this.rootEl.querySelector('.container__alert');
-        this.messageEl.innerHTML = 'invalid task';
 
         formView.controller = taskController;
         formView.rootEl = this.rootEl.querySelector('.container__form');
@@ -32,6 +31,7 @@ class ContainerView extends AbstractView {
                 this.messageEl.classList.remove('container__alert-active');
                 return;
             }
+            this.messageEl.innerHTML = 'invalid task';
             this.messageEl.classList.add('container__alert-active');
         });
         formView.render();

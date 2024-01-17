@@ -15,6 +15,8 @@ class FormView extends AbstractView {
         this.textarea = this.rootEl.querySelector('.container__textarea');
         this.submitBtn = this.rootEl.querySelector('.container__submitBtn');
         this.submitBtn.addEventListener('click', () => {
+            this.submitBtn.disabled = true;
+
             const task = this.textarea.value;
 
             if ((task.length > 0)) {
@@ -26,10 +28,14 @@ class FormView extends AbstractView {
                     })
                     .catch((error) => {
                         console.error(error);
+                    })
+                    .finally(() => {
+                        this.submitBtn.disabled = false;
                     });
             } else {
                 data.value = false;
                 this.rootEl.dispatchEvent(customEvent);
+                this.submitBtn.disabled = false;
                 return;
             }
         });
