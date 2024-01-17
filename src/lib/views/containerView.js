@@ -17,6 +17,9 @@ class ContainerView extends AbstractView {
 
         taskCollectionView.controller = taskController;
         taskCollectionView.rootEl = this.rootEl.querySelector('.container__list');
+        taskCollectionView.rootEl.addEventListener('onLiElBtnClicked', () => {
+            this.messageEl.classList.remove('container__alert-active');
+        });
 
         this.messageEl = this.rootEl.querySelector('.container__alert');
         this.messageEl.innerHTML = 'invalid task';

@@ -5,6 +5,7 @@ class TaskView extends AbstractView {
         super(model);
         this.taskController = taskController;
         this._deleteBtn = '';
+        this.customEvent = new Event('onButtonClicked');
         this._deleteClickHandler = this.deleteClickHandler.bind(this);
     }
 
@@ -32,6 +33,7 @@ class TaskView extends AbstractView {
     }
 
     deleteClickHandler() {
+        this.rootEl.dispatchEvent(this.customEvent);
         const id = this.model.get('id');
         this.taskController.removeTaskById(id)
             .then(() => {

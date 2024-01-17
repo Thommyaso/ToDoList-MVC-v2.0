@@ -22,6 +22,10 @@ class TaskCollectionView extends AbstractView {
         tasks.forEach((task) => {
             const taskView = new TaskView(task, this.controller);
             taskView.render();
+            taskView.rootEl.addEventListener('onButtonClicked', () => {
+                const customEvent = new Event('onLiElBtnClicked');
+                this.rootEl.dispatchEvent(customEvent);
+            });
             this.rootEl.appendChild(taskView.rootEl);
         });
     }
