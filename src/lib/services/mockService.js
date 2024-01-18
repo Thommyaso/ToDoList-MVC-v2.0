@@ -1,12 +1,18 @@
 import {v4} from 'uuid';
 import exampleTasks from '../../exampleTasks.json';
 
+/*
+
+    This is a mockup service to emulate server in github pages
+
+ */
+
 class Service {
     constructor() {
         this.tasks = [...exampleTasks];
     }
 
-    async getTasks() {
+    getTasks() {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({data: this.tasks});
