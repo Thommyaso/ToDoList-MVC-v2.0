@@ -8,25 +8,23 @@ class taskController extends AbstractController {
         this.service = new Service();
     }
 
+    _handleError(error) {
+        return Promise.reject(error);
+    }
+
     createTask(task) {
-        if (TaskModel.validate(task)) {
-            return this.service.postTask(task)
-                .then((result) => {
-                    const receivedTask = result.data.createdTask;
-                    const taskModel = TaskModel.fromJSON(receivedTask);
-
-                    this.model.addTask(taskModel);
-
-                })
-                .catch(() => {
-                    const error = new Error('can not create task');
-
-                    return Promise.reject(error);
-                });
+        if (!TaskModel.validate(task)) {
+            return Promise.reject('invalid task');
         }
-        return new Promise((__resolve, reject) => {
-            reject('invalid task');
-        });
+        return this.service.postTask(task)
+            .then((result) => {
+                const receivedTask = result.data.createdTask;
+                const taskModel = TaskModel.fromJSON(receivedTask);
+
+                this.model.addTask(taskModel);
+
+            })
+            .catch(this._handleError.bind(this));
     }
 
     getTasks() {
@@ -41,22 +39,13 @@ class taskController extends AbstractController {
                 this.model.fireEvent('updated');
 
             })
-            .catch(() => {
-                const error = new Error('can not get task list');
-                return Promise.reject(error);
-            });
+            .catch(this._handleError.bind(this));
     }
 
     removeTaskById(id) {
         return this.service.deleteTask(id)
-            .then(() => {
-                this.model.deleteTaskById(id);
-            })
-            .catch(() => {
-                const error = new Error('can not remove task');
-
-                return Promise.reject(error);
-            });
+            .then(this.model.deleteTaskById.bind(this.model, id))
+            .catch(this._handleError.bind(this));
     }
 }
 

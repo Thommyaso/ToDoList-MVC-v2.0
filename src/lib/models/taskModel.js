@@ -14,10 +14,7 @@ class TaskModel extends AbstractModel {
     }
 
     static validate(task) {
-        if (task.length > 0) {
-            return true;
-        }
-        return false;
+        return task.length > 0;
     }
 }
 

@@ -3,11 +3,18 @@ import AbstractView from '../Abstracts/view';
 class TaskView extends AbstractView {
     constructor(model) {
         super(model);
-        this._deleteBtn = '';
-        this._deleteClickHandler = this.deleteClickHandler.bind(this);
+        this._deleteBtn = null;
     }
 
-    createListElement() {
+    get deleteBtn() {
+        return this._deleteBtn;
+    }
+
+    set deleteBtn(btn) {
+        this._deleteBtn = btn;
+    }
+
+    _createListElement() {
         const taskElement = document.createElement('li');
         taskElement.className = 'container__listElement';
         taskElement.innerHTML =
@@ -15,18 +22,18 @@ class TaskView extends AbstractView {
         this.rootEl = taskElement;
     }
 
-    setUpDeleteBtn() {
+    _setUpDeleteBtn() {
         const deleteBtn = document.createElement('a');
         deleteBtn.className = 'container__elementDeleteBtn';
         deleteBtn.textContent = 'Delete';
-        this._deleteBtn = deleteBtn;
+        this.deleteBtn = deleteBtn;
     }
 
-    setEventListener() {
-        this._deleteBtn.addEventListener('click', this._deleteClickHandler);
+    _setEventListener() {
+        this.deleteBtn.addEventListener('click', this._deleteClickHandler.bind(this));
     }
 
-    deleteClickHandler() {
+    _deleteClickHandler() {
         const task = {id: this.model.get('id')};
         const customEvent = new CustomEvent('onTaskDelete', {detail: task});
 
@@ -34,10 +41,10 @@ class TaskView extends AbstractView {
     }
 
     render() {
-        this.createListElement();
-        this.setUpDeleteBtn();
-        this.setEventListener();
-        this.rootEl.appendChild(this._deleteBtn);
+        this._createListElement();
+        this._setUpDeleteBtn();
+        this._setEventListener();
+        this.rootEl.appendChild(this.deleteBtn);
     }
 }
 
