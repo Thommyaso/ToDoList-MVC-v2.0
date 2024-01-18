@@ -20,9 +20,12 @@ class TaskCollectionView extends AbstractView {
         const tasks = this.model.get('tasks');
 
         tasks.forEach((task) => {
-            const taskView = new TaskView(task, this.controller);
+            const taskView = new TaskView(task);
             taskView.render();
             this.rootEl.appendChild(taskView.rootEl);
+            taskView.rootEl.addEventListener('onTaskDelete', (data) => {
+                this.rootEl.dispatchEvent(new CustomEvent('onTaskDelete', data));
+            });
         });
     }
 }

@@ -1,9 +1,8 @@
 import AbstractView from '../Abstracts/view';
 
 class TaskView extends AbstractView {
-    constructor(model, taskController) {
+    constructor(model) {
         super(model);
-        this.taskController = taskController;
         this._deleteBtn = '';
         this._deleteClickHandler = this.deleteClickHandler.bind(this);
     }
@@ -32,14 +31,10 @@ class TaskView extends AbstractView {
     }
 
     deleteClickHandler() {
-        const id = this.model.get('id');
-        this.taskController.removeTaskById(id)
-            .then(() => {
-                this.removeEventListener();
-            })
-            .catch(() => {
-                console.log(`deleteng task with id: "${id}" failed`);
-            });
+        const task = {id: this.model.get('id')};
+        const customEvent = new CustomEvent('onTaskDelete', {detail: task});
+
+        this.rootEl.dispatchEvent(customEvent);
     }
 
     render() {

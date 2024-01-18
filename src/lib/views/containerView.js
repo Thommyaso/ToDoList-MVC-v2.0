@@ -13,8 +13,13 @@ class ContainerView extends AbstractView {
         const taskCollectionView = new TaskCollectionView(this.model);
         const formView = new FormView(this.model);
 
-        taskCollectionView.controller = taskController;
         taskCollectionView.rootEl = this.rootEl.querySelector('.container__list');
+        taskCollectionView.rootEl.addEventListener('onTaskDelete', (data) => {
+            taskController.removeTaskById(data.detail.id)
+                .catch(() => {
+                    console.log(`deleting task with id: "${data.detail.id}" failed`);
+                });
+        });
 
         formView.rootEl = this.rootEl.querySelector('.container__form');
         formView.init();
