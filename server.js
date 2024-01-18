@@ -18,7 +18,6 @@ app.get('/task', function (__req, res) {
     setTimeout(() => {
         res.json(tasks);
     }, 1500);
-    // res.json(tasks);
 });
 
 app.post('/task', function (req, res) {
@@ -33,18 +32,11 @@ app.post('/task', function (req, res) {
             createdTask,
         });
     }, 1500);
-    // res.status(200).json({
-    //     createdTask,
-    // });
 });
 
 app.delete('/task/:id', function (req, res) {
     const id = req.params.id;
     tasks = tasks.filter((obj) => obj.id !== id);
-    // res.status(200).json({
-    //     tasks,
-    //     status: 'ok',
-    // });
     setTimeout(() => {
         res.status(200).json({
             tasks,
