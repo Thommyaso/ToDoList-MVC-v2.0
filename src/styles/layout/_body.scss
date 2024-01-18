@@ -13,5 +13,17 @@ a {
         color: gray;
         background-color: beige;
     }
+
+    &__alert-hidden {
+        visibility: hidden;
+    }
+
+    &__alert-error {
+        color: red;
+    }
+
+    &__alert-info {
+        color: green;
+    }
 }
   

@@ -8,18 +8,18 @@ class FormView extends AbstractView {
         this.submitBtn = null;
     }
 
+    _emitAddTask() {
+        const customEvent = new CustomEvent('onTaskSubmit', {detail: {
+            task: this.textarea.value,
+        }});
+
+        this.rootEl.dispatchEvent(customEvent);
+    }
+
     init() {
         this.textarea = this.rootEl.querySelector('.container__textarea');
         this.submitBtn = this.rootEl.querySelector('.container__submitBtn');
-        this.submitBtn.addEventListener('click', () => {
-            this.controller.createTask(this.textarea.value)
-                .then(() => {
-                    this.render();
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        });
+        this.submitBtn.addEventListener('click', this._emitAddTask.bind(this));
     }
 
     render() {

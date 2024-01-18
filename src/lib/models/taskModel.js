@@ -12,6 +12,10 @@ class TaskModel extends AbstractModel {
         result.set('task', task);
         return result;
     }
+
+    static validate(task) {
+        return task.length > 0;
+    }
 }
 
 export default TaskModel;
