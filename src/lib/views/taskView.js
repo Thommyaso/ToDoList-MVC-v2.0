@@ -26,10 +26,6 @@ class TaskView extends AbstractView {
         this._deleteBtn.addEventListener('click', this._deleteClickHandler);
     }
 
-    removeEventListener() {
-        this._deleteBtn.removeEventListener('click', this._deleteClickHandler);
-    }
-
     deleteClickHandler() {
         const task = {id: this.model.get('id')};
         const customEvent = new CustomEvent('onTaskDelete', {detail: task});
