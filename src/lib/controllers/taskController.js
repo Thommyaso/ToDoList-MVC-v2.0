@@ -9,19 +9,24 @@ class taskController extends AbstractController {
     }
 
     createTask(task) {
-        return this.service.postTask(task)
-            .then((result) => {
-                const receivedTask = result.data.createdTask;
-                const taskModel = TaskModel.fromJSON(receivedTask);
+        if (TaskModel.validate(task)) {
+            return this.service.postTask(task)
+                .then((result) => {
+                    const receivedTask = result.data.createdTask;
+                    const taskModel = TaskModel.fromJSON(receivedTask);
 
-                this.model.addTask(taskModel);
+                    this.model.addTask(taskModel);
 
-            })
-            .catch(() => {
-                const error = new Error('can not create task');
+                })
+                .catch(() => {
+                    const error = new Error('can not create task');
 
-                return Promise.reject(error);
-            });
+                    return Promise.reject(error);
+                });
+        }
+        return new Promise((__resolve, reject) => {
+            reject('invalid task');
+        });
     }
 
     getTasks() {
