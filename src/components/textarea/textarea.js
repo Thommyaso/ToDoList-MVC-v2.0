@@ -8,6 +8,7 @@ export const createTextarea = ({
 }) => {
     const textarea = document.createElement('textarea');
     textarea.className = 'container__textarea';
+    textarea.placeholder = 'Type your task...';
 
     if (height) {
         textarea.style.height = height;
