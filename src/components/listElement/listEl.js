@@ -1,6 +1,6 @@
 import './listEl.scss';
-import {createBtn} from '../deleteBtn/deleteBtn';
-import {deleteButton} from '../deleteBtn/deleteBtn.stories';
+import {createBtn} from '../buttons/Btn';
+import {deleteButton} from '../buttons/Btn.stories';
 
 export const createLiEl = ({
     innerHTML,

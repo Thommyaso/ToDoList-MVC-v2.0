@@ -1,0 +1,14 @@
+.container{
+    &__textarea {
+        all: initial;
+        background-color: rgb(235, 235, 235);
+        border-radius: 0.5rem;
+        width: 40rem;
+        height: 2rem;
+        line-height:2rem;
+        font-size: 16px;
+        box-sizing: border-box;
+        resize: none;
+        margin-right: 0.7rem;
+    }
+}

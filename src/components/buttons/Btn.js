@@ -1,6 +1,7 @@
-import './deleteBtn.scss';
+import './Btn.scss';
 export const createBtn = ({
     label,
+    cssClass,
     onClick,
     icon,
     backgroundColor,
@@ -8,7 +9,7 @@ export const createBtn = ({
     const btn = document.createElement('button');
     btn.type = 'a';
     btn.addEventListener('click', onClick);
-    btn.className = 'container__elementDeleteBtn';
+    btn.className = cssClass;
 
     if (backgroundColor) {
         btn.style.backgroundColor = backgroundColor;
