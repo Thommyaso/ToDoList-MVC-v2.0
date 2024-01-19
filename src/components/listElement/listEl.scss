@@ -1,0 +1,13 @@
+.container{
+    &__listElement {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        width: 30rem;
+        height: fit-content;
+        padding: 0.25rem 0.5rem;
+        background-color: rgb(240, 240, 240);
+        border-radius: 0.5rem;
+    }
+}

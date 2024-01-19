@@ -14,11 +14,22 @@ class TaskView extends AbstractView {
         this._deleteBtn = btn;
     }
 
+    _createElementContainer(text) {
+        const div = document.createElement('div');
+        const p = document.createElement('p');
+        div.className = 'container__elementContainer';
+        p.className = 'container__elementParagraph';
+        p.innerHTML = text;
+        div.appendChild(p);
+        return div;
+    }
+
     _createListElement() {
         const taskElement = document.createElement('li');
         taskElement.className = 'container__listElement';
-        taskElement.innerHTML =
-            `${this.model.get('task')}`;
+        taskElement.appendChild(this._createElementContainer(this.model.get('task')));
+        // taskElement.innerHTML =
+        //     `${this.model.get('task')}`;
         this.rootEl = taskElement;
     }
 

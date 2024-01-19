@@ -1,0 +1,9 @@
+.container__elementDeleteBtn {
+    all: initial;
+    border-radius: 30%;
+    display: flex;
+
+    &:hover {
+        background-color: rgb(221, 221, 221);
+    }
+}

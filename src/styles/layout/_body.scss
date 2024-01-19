@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -5,7 +10,16 @@ a {
  }
 
 .container {
+    &__listElement {
+        display: flex;
+    }
+
+    &__elementContainer {
+        height: fit-content;
+    }
+
     &__elementDeleteBtn {
+        height: fit-content;
         margin-left: 1rem;
     }
 
