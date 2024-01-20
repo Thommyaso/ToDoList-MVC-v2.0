@@ -7,7 +7,7 @@ export const createBtn = ({
     backgroundColor,
 }) => {
     const btn = document.createElement('button');
-    btn.type = 'a';
+    btn.type = 'button ';
     btn.addEventListener('click', onClick);
     btn.className = cssClass;
 
