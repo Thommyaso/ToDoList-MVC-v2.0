@@ -1,0 +1,96 @@
+
+.btn{
+    &--delete {
+        flex-basis: 100px;
+        all: initial;
+        border-radius: 50%;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        width: 26px;
+        height: 26px;
+        background: #fff;
+        cursor: pointer;
+        border: 2px solid #eb0404;
+
+        &:after {
+        content: '';
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            height: 10%;
+            width: 60%;
+            background: #eb0404;
+        }
+        
+        &:before {
+        content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: #eb0404;
+            height: 10%;
+            width: 60%;
+        }
+        
+        &:hover:before,
+        &:hover:after {
+            background: #fff;
+            transition: 0.17s;
+        }
+        
+        &:hover {
+            background-color: #eb0404;
+            transition: 0.17s;
+        }
+    }
+
+    &--add {
+        all: initial;
+        border-radius: 30%;
+        display: flex;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        width: 26px;
+        height: 26px;
+        background: #fff;
+        cursor: pointer;
+        border: 2px solid #095776;
+    
+        &:after {
+          content: '';
+          top: 50%;
+          left: 50%;
+          position: absolute;
+          transform: translate(-50%, -50%);
+          height: 10%;
+          width: 60%;
+          background: #095776;
+        }
+          
+        &:before {
+          content: '';
+          position: relative;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #095776;
+          height: 60%;
+          width: 10%;
+        }
+        
+        &:hover:before,
+        &:hover:after {
+          background: #fff;
+          transition: 0.17s;
+        }
+        
+        &:hover {
+          background-color: #095776;
+          transition: 0.17s;
+        }
+    }
+}

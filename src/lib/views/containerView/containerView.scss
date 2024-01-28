@@ -1,0 +1,11 @@
+.container {
+    padding: 2rem;
+    border-radius: 1rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(234, 253, 253);
+    margin: 5rem auto;
+}

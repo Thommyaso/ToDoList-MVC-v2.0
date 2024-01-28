@@ -1,0 +1,15 @@
+.container{
+    &__listElement {        
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        list-style: none;
+        max-width: 35rem;
+        min-width: 27rem;
+        height: fit-content;
+        background-color: rgba(7, 255, 243, 0.11);
+        border-radius: 0.5rem;
+        padding: 0.2rem 0.5rem;
+        margin: 0.6rem 0;
+    }
+}

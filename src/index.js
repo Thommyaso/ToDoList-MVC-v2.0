@@ -1,6 +1,5 @@
 import './style.scss';
-
-import ContainerView from './lib/views/containerView';
+import ContainerView from './lib/views/containerView/containerView';
 import TaskCollectionModel from './lib/models/taskCollectionModel';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +8,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     containerView.rootEl = document.querySelector('#listContainer');
     containerView.render();
-
 });
 
