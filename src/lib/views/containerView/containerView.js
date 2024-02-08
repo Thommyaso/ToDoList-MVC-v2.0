@@ -1,8 +1,9 @@
-import AbstractView from '../Abstracts/view';
-import FormView from '../views/formView';
-import TaskCollectionView from '../views/taskCollectionView';
-import TaskController from '../controllers/taskController';
-import AlertView from './alertView';
+import AbstractView from '../../Abstracts/view';
+import FormView from '../formView/formView';
+import TaskCollectionView from '../taskCollectionView/taskCollectionView';
+import TaskController from '../../controllers/taskController';
+import AlertView from '../alertView/alertView';
+import './containerView.scss';
 
 class ContainerView extends AbstractView {
     constructor(model) {

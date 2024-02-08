@@ -1,0 +1,14 @@
+.container {
+    &__alert-info {
+        color: green;
+    }
+
+    &__alert-error {
+        color: red;
+        font-weight: 800;
+    }
+
+    &__alert-hidden {
+        visibility: hidden;
+    }
+}

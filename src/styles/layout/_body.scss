@@ -1,29 +1,22 @@
-a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
- }
+/* @import url('https://fonts.googleapis.com/css2?family=Handlee&family=Permanent+Marker&display=swap');
 
-.container {
-    &__elementDeleteBtn {
-        margin-left: 1rem;
-    }
+*{
+    font-family: "Handlee", cursive;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} */
 
-    &__elementDeleteBtn:hover {
-        color: gray;
-        background-color: beige;
-    }
-
-    &__alert-hidden {
-        visibility: hidden;
-    }
-
-    &__alert-error {
-        color: red;
-    }
-
-    &__alert-info {
-        color: green;
-    }
-}
-  
+/* .container {
+    padding: 2rem;
+    border-radius: 1rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(234, 253, 253);
+    margin: 5rem auto;
+} */

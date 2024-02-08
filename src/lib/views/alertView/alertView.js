@@ -1,4 +1,5 @@
-import AbstractView from '../Abstracts/view';
+import AbstractView from '../../Abstracts/view';
+import './alertView.scss';
 
 class AlertView extends AbstractView {
     constructor() {

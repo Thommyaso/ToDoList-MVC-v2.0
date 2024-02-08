@@ -1,5 +1,6 @@
-import AbstractView from '../Abstracts/view';
-import TaskView from '../views/taskView';
+import AbstractView from '../../Abstracts/view';
+import TaskView from '../taskView/taskView';
+import './taskCollectionView.scss';
 
 class TaskCollectionView extends AbstractView {
     constructor(model) {
